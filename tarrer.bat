@@ -8,7 +8,7 @@ if not exist "%~1" echo:File not exist & goto :eof
 set /a file=1
 if exist "%~1\*" set /a file=0
 if %file%==0 (echo argument is a directory) else (echo argument is a file)
-set "inpt_fle=%~fp1"
+set "inpt_fle=%~1"
 set "fl_nm=%~nx1"
 :regen
 set /a RAND=%RANDOM%*9999/32767
