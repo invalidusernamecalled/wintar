@@ -21,11 +21,13 @@ if %errorlevel%==0 (echo Output File: "%~1%RAND%.tar.gz")
 goto :eof
 
 :printhelp
-Tarrer v1.2   by Puneet Bapna
-echo Note:-no option to add to existing archive
+if "%~1"=="/?" echo Tarrer v1.2   by Puneet Bapna
+echo:
 echo Syntax:-
 echo "%~nx0" "Directory/File To Add to archive" [exclude_pattern/optional]
+echo:
 
-echo archive name is auto-generated.
+echo archive name is auto-generated. does not add to existing archive.
+echo:
 
 
