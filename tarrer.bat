@@ -21,7 +21,7 @@ if %errorlevel%==0 (echo Output File: "%~1%RAND%.tar.gz")
 goto :eof
 
 :printhelp
-if "%~1"=="/?" echo Tarrer v1.2   by Puneet Bapna
+if "%~1"=="/?" echo WinTarrer v1.2   by Puneet Bapna
 echo:
 echo Syntax:-
 echo "%~nx0" "Directory/File To Add to archive" [exclude_pattern/optional]
