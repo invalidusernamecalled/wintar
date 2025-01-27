@@ -12,7 +12,7 @@ set "inpt_fle=%~fp1"
 set "fl_nm=%~nx1"
 :regen
 set /a RAND=%RANDOM%*9999/32767
-if exist "%~1%RAND%" goto regen
+if exist "%~1%RAND%.tar.gz" goto regen
 if "%exclude_pattern%" NEQ "" (tar -r -f "%fl_nm%%RAND%.tar.gz" --exclude %exclude_pattern% "%inpt_fle%") else (tar -r -f "%fl_nm%%RAND%.tar.gz" "%inpt_fle%")
 
 echo ERRORCODE:%errorlevel%
