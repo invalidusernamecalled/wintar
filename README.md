@@ -4,4 +4,4 @@
 
 Important!
 + <SUP>DOES **NOT SUPPORT** ADDING TO EXISTING ARCHIVES.
-+ <SUP>Has known bugs when HANDLING FILES WITH SPECIAL CHARACTERS in GUI drag 'n' drop operations. Not recommended for use in GUI
++ <SUP>Not recommended for use in GUI: Has known bugs when HANDLING FILES WITH SPECIAL CHARACTERS in GUI drag 'n' drop operations. 
