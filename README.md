@@ -3,5 +3,5 @@
 
 
 Important!
-+ <SUP>DOES **NOT SUPPORT** ADDING TO EXISTING ARCHIVES.
-+ <SUP>Not recommended for use in GUI: Has known bugs when HANDLING FILES WITH SPECIAL CHARACTERS in GUI drag 'n' drop operations. 
++ <SUP>Does **not support** adding to Existing Archive.
++ <SUP>Not recommended for use in GUI. Has known bugs when handling FILES or FOLDERS with _Special Characters_ in GUI drag 'n' drop operations. 
