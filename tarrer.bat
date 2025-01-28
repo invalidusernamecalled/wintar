@@ -1,5 +1,5 @@
 @echo off
-if exist "%*" set "inpt_fle=%*"&goto process
+REM if exist "%*" set "inpt_fle=%*"&goto process
 set exclude_pattern=
 if "%~1"==""   (goto printhelp)
 if "%~1"=="/?" (goto printhelp)
