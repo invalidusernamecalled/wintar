@@ -16,13 +16,15 @@ call :setonlyname "%inpt_fle%"
 set /a RAND=%RANDOM%*9999/32767
 if exist "%~1%RAND%.tar.gz" goto regen
 if "%exclude_pattern%" NEQ "" (tar -r -f "%fl_nm%%RAND%.tar.gz" --exclude %exclude_pattern% "%inpt_fle%") else (tar -r -f "%fl_nm%%RAND%.tar.gz" "%inpt_fle%")
-
-echo ERRORCODE:%errorlevel%
-if %errorlevel%==0 (echo Output File: "%fl_nm%%RAND%.tar.gz")
+set /a program_error_level=%errorlevel%
+if %program_error_level%==0 (if exist "%fl_nm%%RAND%.tar.gz" (echo Output File: "%fl_nm%%RAND%.tar.gz"&call :seterror 0) else (call :seterror 1)) else (call :seterror 1)
+echo:tar[%program_error_level%]*******"%~nx0"[%errorlevel%]
 goto :eof
 :setonlyname
 for /f "delims=" %%i in (%1) do set "fl_nm=%~n1"
 goto :eof
+:seterror
+exit /b %1
 :printhelp
 if "%~1"=="/?" echo WinTarrer v1.2   by Puneet Bapna
 echo:
