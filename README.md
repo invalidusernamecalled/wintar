@@ -1,6 +1,8 @@
-`command prompt` "tarrer.bat" _"Directory/File To Add to archive"_ [exclude_pattern/optional]
+`"tarrer.bat" "Directory/File To Add to archive" [exclude_pattern/optional]`
 
 
 Note:-
-+ <SUP>Does **not support** adding to an Existing Archive.
-+ <SUP>Not recommended for use in **GUI drag 'n' drop** operations. 
++ <SUP>Only for creating a new Archive.
++ <SUP>Do not use in **drag 'n' drop** operations.</SUP>
+
+`addtotar.bat archiveNAME file/folderNAMEtoADD`
