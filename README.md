@@ -1,5 +1,5 @@
 #### Syntax:-
-`"tarrer.bat" "Directory/File To Add to archive" [exclude_pattern/optional]`
+`"tarrer.bat" "Directory/File To Add to archive/File pattern" [exclude_pattern/optional]`
 
 `addtotar.bat EXISTINGarchiveNAME file/folderNAMEtoADD`
 
