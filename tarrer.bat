@@ -1,8 +1,10 @@
 @echo off & setlocal enabledelayedexpansion
 set inpt_fle=
 set inpt_dir=
-if defined archive-extension for %%a in (.rar .gz .bz2 .xz .lzma) do if /i "%archive-extension%"=="%%a" (echo:Using Ext:%archive-extension%) else (set archive-extension=.rar)
+set extensionset=0
+if defined archive-extension for %%a in (.rar .gz .bz2 .xz .lzma) do if /i "%archive-extension%"=="%%a" (echo:Using Ext:%archive-extension%&set /a extensionset=1)
 if not defined archive-extension echo Using default extension:.rar&set archive-extension=.rar
+if %extensionset%==0 set archive-extension=.rar
 set exclude_pattern=
 if "%~1"==""   (goto printhelp)
 if "%~1"=="/?" (goto printhelp)
