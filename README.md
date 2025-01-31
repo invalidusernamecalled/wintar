@@ -2,7 +2,7 @@
 <SUP>optional</SUP> `ENVIRONMENT VARIABLE` : `set archive-choice=`[{default=}`.tar.gz`|`.tar.bz2`|`.tar.xz`|`.tar.lzma`]<br>
 <SUP>optional</SUP> `ENVIRONMENT VARIABLE` : `set format-choice=`[{default=}`ustar`|`pax`|`cpio`|`shar`]
 
-<b>`tarrer.bat`</b> `"[Directory or FILENAME or *pattern* to include]" [{Optional=}exclude_pattern]`
+<b>`tarrer.bat`</b> `"[Directory or FILENAME or *pattern* to include]"` `[{Optional=}exclude_pattern]`
 
 `addtotar.bat EXISTINGarchiveNAME file/folderNAMEtoADD`
 
