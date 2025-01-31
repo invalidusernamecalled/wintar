@@ -11,4 +11,4 @@
 2. FIle names containing special variable names could be mis interpreted.
 
 >[!WARNING]
-do not use Drag 'n' Drop generally, especially with multiple items (multiple items are not supported/processed. the script does not parse file/directory names properly if passed thru the GUI because Windows does not provide arguments in a useful format to the script.)
+do not use Drag 'n' Drop generally, especially with multiple items (multiple items are not supported/processed. the script does not parse file/directory names properly if passed thru the GUI because Windows does not pass arguments to the script in a useful format.)
