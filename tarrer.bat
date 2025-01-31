@@ -48,7 +48,7 @@ exit /b %1
 if "%~1"=="/?" echo WinTarrer v1.4  [by Puneet Bapna]
 echo:
 echo:                     (environment variables)
-echo:--^>set archive-choice=[{default=}.tar.gz^|.tar.bz2^|.tar.xz^|.tar.lzma]
+echo:--^>set archive-choice=[{default=}.tar^|.tar.gz^|.tar.bz2^|.tar.xz^|.tar.lzma]
 echo:--^>set format-choice=[{default=}ustar^|pax^|cpio^|shar]
 echo:
 echo Syntax:-
