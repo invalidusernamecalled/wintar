@@ -6,5 +6,8 @@
 
 `addtotar.bat EXISTINGarchiveNAME file/folderNAMEtoADD`
 
+#### Edge cases Reviewed:-
+1. File names contain `%` or `!` with special certain names could be mis interpreted leading to a File Not Exist Error.
+
 >[!WARNING]
 do not use Drag 'n' Drop generally, especially with multiple items (multiple items are not supported/processed. the script does not parse file/directory names properly if passed thru the GUI because Windows does not provide arguments in a useful format to the script.)
