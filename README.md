@@ -7,4 +7,4 @@
 `addtotar.bat EXISTINGarchiveNAME file/folderNAMEtoADD`
 
 >[!WARNING]
-do not use Drag 'n' Drop with multiple items
+do not use Drag 'n' Drop generally and especially with multiple items (the script does not parse names correctly because of the way windows provides the arguments)
