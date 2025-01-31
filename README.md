@@ -1,5 +1,5 @@
 #### Syntax:-
-`ENVIRONMENT VARIABLE` set archive-extension=[.bz2|.rar|.xz|.lzma|.gz]
+`ENVIRONMENT VARIABLE` set archive-extension=[{default=}.rar|.tar.gz|.tar.bz2|.tar.xz|.tar.lzma|.tar]
 
 `"tarrer.bat" "[Directory/File/pattern] to Add" [exclude_pattern/optional]`
 
