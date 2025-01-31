@@ -2,9 +2,15 @@
 set inpt_fle=
 set inpt_dir=
 set extensionset=0
-if defined archive-extension for %%a in (.rar .gz .bz2 .xz .lzma) do if /i "%archive-extension%"=="%%a" (echo:Using Ext:%archive-extension%&set /a extensionset=1)
-if not defined archive-extension echo Using default extension:.rar&set archive-extension=.rar
-if %extensionset%==0 set archive-extension=.rar
+if defined archive-choice for %%a in (.tar.gz .tar.bz2 .tar.xz .tar.lzma) do if /i "%archive-choice%"=="%%a" (echo:Using Ext:%archive-choice%&set /a extensionset=1)
+if not defined archive-choice echo Using default extension:.rar&set archive-choice=.rar
+if %extensionset%==0 set archive-extension=.tar.gz
+if "%archive-extension%"==".tar.bz2" set createparam=-cj
+if "%archive-extension%"==".tar.xz" set createparam=-cJ
+if "%archive-extension%"==".tar.gz" set createparam=-cz
+if "%archive-extension%"==".tar.lzma" set createparam=-c --lzma
+if defined format-choice for %%a in (ustar pax cpio shar) do if /i "%format-choice%"=="%%a" echo:--format %format-choice%
+if not defined format-choice set format-choice=ustar
 set exclude_pattern=
 if "%~1"==""   (goto printhelp)
 if "%~1"=="/?" (goto printhelp)
@@ -18,14 +24,14 @@ goto process
 :process
 call :setonlyname "%~1"
 echo FULL TARGET NAME: %inpt_dir%\%fl_nm%
-echo tar -r -f "%fl_nm_only%%RAND%%archive-extension%" "%~1" -C "%inpt_dir%"
+echo tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%"  --format %format-choice% "%~1" -C "%inpt_dir%"
 :regen
 set /a RAND=%RANDOM%*9999/32767
 if exist "%fl_nm_only%%RAND%%archive-extension%" goto regen
-if "%exclude_pattern%" NEQ "" (tar -r -f "%fl_nm_only%%RAND%%archive-extension%" --exclude %exclude_pattern% "%~1"  -C "%inpt_dir%" ) else (tar -r -f "%fl_nm_only%%RAND%%archive-extension%" "%~1" -C "%inpt_dir%")
+if "%exclude_pattern%" NEQ "" (tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% --exclude %exclude_pattern% "%~1"  -C "%inpt_dir%" ) else (tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%"  --format %format-choice% "%~1" -C "%inpt_dir%")
 set /a program_error_level=%errorlevel%
 if %program_error_level%==0 (if exist "%fl_nm_only%%RAND%%archive-extension%" (echo Output File: "%fl_nm_only%%RAND%%archive-extension%"&call :seterror 0) else (call :seterror 1)) else (call :seterror 1)
-echo:tar[%program_error_level%]*******"%~nx0"[%errorlevel%]
+echo:tar[%program_error_level%]*******"%~nx0"[%errorlevel%]   ^(Error codes:1=Fail^)
 goto :eof
 :setonlyname
 for /f "delims=" %%i in (%1) do set "fl_nm=%~nx1"&set "fl_nm_only=%~n1"
