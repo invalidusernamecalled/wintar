@@ -2,9 +2,12 @@
 set inpt_fle=
 set inpt_dir=
 set extensionset=0
+if "%~1"==""   (goto printhelp)
+if "%~1"=="/?" (goto printhelp)
 if defined archive-choice for %%a in (.tar.gz .tar.bz2 .tar.xz .tar.lzma) do if /i "%archive-choice%"=="%%a" (echo:Using Ext:%archive-choice%&set /a extensionset=1)
-if not defined archive-choice echo Using default extension:.rar&set archive-choice=.rar
-if %extensionset%==0 set archive-extension=.tar.gz
+if not defined archive-choice echo Using default archive:.tar&set archive-choice=.tar
+if %extensionset%==0 set archive-extension=.tar
+set createparam=-c
 if "%archive-extension%"==".tar.bz2" set createparam=-cj
 if "%archive-extension%"==".tar.xz" set createparam=-cJ
 if "%archive-extension%"==".tar.gz" set createparam=-cz
@@ -12,8 +15,6 @@ if "%archive-extension%"==".tar.lzma" set createparam=-c --lzma
 if defined format-choice for %%a in (ustar pax cpio shar) do if /i "%format-choice%"=="%%a" echo:--format %format-choice%
 if not defined format-choice set format-choice=ustar
 set exclude_pattern=
-if "%~1"==""   (goto printhelp)
-if "%~1"=="/?" (goto printhelp)
 if "%~2" NEQ "" set "exclude_pattern=%~2"
 if not exist "%~1" echo:File not exist & goto :eof
 set /a file=1
