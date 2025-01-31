@@ -36,7 +36,7 @@ goto :eof
 :seterror
 exit /b %1
 :printhelp
-if "%~1"=="/?" echo WinTarrer v1.2   by Puneet Bapna
+if "%~1"=="/?" echo WinTarrer v1.4  [by Puneet Bapna]
 echo:
 echo Syntax:-
 echo "%~nx0" "Directory/File To Add to archive" [exclude_pattern/optional]
