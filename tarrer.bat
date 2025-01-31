@@ -31,7 +31,7 @@ set /a RAND=%RANDOM%*9999/32767
 if exist "%fl_nm_only%%RAND%%archive-extension%" goto regen
 if "%exclude_pattern%" NEQ "" (tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% --exclude %exclude_pattern% "%~1"  -C "%inpt_dir%" ) else (tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%"  --format %format-choice% "%~1" -C "%inpt_dir%")
 set /a program_error_level=%errorlevel%
-if %program_error_level%==0 (if exist "%fl_nm_only%%RAND%%archive-extension%" (echo Output File: "%fl_nm_only%%RAND%%archive-extension%"&call :seterror 0) else (call :seterror 1)) else (call :seterror 1)
+if %program_error_level%==0 (if exist "%fl_nm_only%%RAND%%archive-extension%" (echo:&echo Output File: "%fl_nm_only%%RAND%%archive-extension%"&call :seterror 0) else (call :seterror 1)) else (call :seterror 1)
 echo:tar[%program_error_level%]*******"%~nx0"[%errorlevel%]   ^(Error codes:1=Fail^)
 goto :eof
 :setonlyname
