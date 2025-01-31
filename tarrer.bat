@@ -47,6 +47,10 @@ exit /b %1
 :printhelp
 if "%~1"=="/?" echo WinTarrer v1.4  [by Puneet Bapna]
 echo:
+echo:                     (environment variables)
+echo:--^>set archive-choice=[{default=}.tar.gz^|.tar.bz2^|.tar.xz^|.tar.lzma]
+echo:--^>set format-choice=[{default=}ustar^|pax^|cpio^|shar]
+echo:
 echo Syntax:-
 echo "%~nx0" "Directory/File To Add to archive" [exclude_pattern/optional]
 echo:
