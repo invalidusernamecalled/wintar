@@ -1,5 +1,4 @@
 @echo off
-echo %1
 set inpt_fle=
 set inpt_dir=
 set extensionset=0
