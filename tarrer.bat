@@ -17,7 +17,7 @@ if defined format-choice for %%a in (ustar pax cpio shar) do if /i "%format-choi
 if not defined format-choice set format-choice=ustar
 set exclude_pattern=
 if "%~2" NEQ "" set "exclude_pattern=%~2"
-if not exist "%~1" echo:File not exist & call :seterror 1 & goto :eof
+if not exist "%~1" echo:File not exist & call :seterror 9009 & goto :eof
 set /a file=1
 if exist "%~1\*" set /a file=0
 if %file%==0 (echo argument is a directory) else (echo argument is a file)
