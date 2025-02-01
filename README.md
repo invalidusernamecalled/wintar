@@ -8,6 +8,7 @@
 
 #### Edge cases Reviewed:-
 1. File names containing special variable names (enclosed in `%` like `%special_name%` could be mis interpreted but will return a file not found error. (`9009`)
+2. File names cannot contain Double quotes as part of the name, but should be enclosed in them `"file name"`
 
 >[!WARNING]
 >do not use Drag 'n' Drop generally, especially with multiple items<br>
