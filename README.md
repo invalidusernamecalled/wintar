@@ -7,8 +7,7 @@
 `addtotar.bat EXISTINGarchiveNAME file/folderNAMEtoADD`
 
 #### Edge cases Reviewed:-
-1. File names containing `!` could be mis interpreted leading to a File Not Exist Error. Will require escaping `^^^!` which may not be feasible.
-2. File names containing special variable names (enclosed in `%` or `!` like `%special_name%` or `!special_name!` could be mis interpreted. If you plan to use this in a script, better check for these special characters and process them manually.
+1. File names containing special variable names (enclosed in `%` like `%special_name%` could be mis interpreted but will return a file not found error. (`9009`)
 
 >[!WARNING]
 >do not use Drag 'n' Drop generally, especially with multiple items<br>
