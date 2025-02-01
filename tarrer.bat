@@ -4,7 +4,7 @@ set inpt_dir=
 set extensionset=0
 if "%~1"==""   (goto printhelp)
 if "%~1"=="/?" (goto printhelp)
-if defined archive-choice for %%a in (.tar.gz .tar.bz2 .tar.xz .tar.lzma) do if /i "%archive-choice%"=="%%a" (echo:Using Ext:%archive-choice%&set /a extensionset=1)
+if defined archive-choice for %%a in (.tar.gz .tar.bz2 .tar.xz .tar.lzma) do if /i "%archive-choice%"=="%%a" (echo:Using Ext:%archive-choice%&set /a extensionset=1&set archive-extension=%%a)
 if not defined archive-choice echo Using default archive:.tar&set archive-choice=.tar
 if %extensionset%==0 set archive-extension=.tar
 set createparam=-c
