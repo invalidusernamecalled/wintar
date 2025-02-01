@@ -3,8 +3,10 @@ echo %1
 set inpt_fle=
 set inpt_dir=
 set extensionset=0
+call :seterror 1
 if "%~1"==""   (goto printhelp)
 if "%~1"=="/?" (goto printhelp)
+call :seterror 0
 if defined archive-choice for %%a in (.tar.gz .tar.bz2 .tar.xz .tar.lzma) do if /i "%archive-choice%"=="%%a" (echo:Using Ext:%archive-choice%&set /a extensionset=1&set archive-extension=%%a)
 if not defined archive-choice echo Using default archive:.tar&set archive-choice=.tar
 if %extensionset%==0 set archive-extension=.tar
