@@ -23,20 +23,24 @@ set /a file=1
 if exist "%~1\*" set /a file=0
 if %file%==0 (echo argument is a directory) else (echo argument is a file)
 if exist %1 echo %1 exists. 
-for /f "delims=" %%i in ('dir %1') do set "inpt_dir=%~dp1"&echo:directory:"%~dp1":will change to it before processing.&goto thatsit
-:thatsit
+set "inpt_dir=%~dp1"&echo:directory:"%~dp1":will change to it before processing.
 :process
 set /a numofcounts=0
-for /f "delims=" %%i in ('dir /b %1') do set "fl_nm=%~nx1"&set "fl_nm_only=%~n1"&set /a numofcounts+=1
+for /f "delims=" %%i in ('dir /b /a-d %1') do set "fl_nm=%~nx1"&set "fl_nm_only=%~n1"&set /a numofcounts+=1
+if %numofcounts%==0 for /f "delims=" %%i in ('dir /b /a-d /ah %1') do set "fl_nm=%~nx1"&set "fl_nm_only=%~n1"&set /a numofcounts+=1
 if %numofcounts% == 1 (echo FULL TARGET NAME: %inpt_dir%\%fl_nm%) else (echo FULL TARGET NAME: %1)
-echo tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%"  --format %format-choice% "%~1" -C "%inpt_dir%"
 :regen
 set /a RAND=%RANDOM%*9999/32767
 if exist "%fl_nm_only%%RAND%%archive-extension%" goto regen
+call :displaycommand
 if "%exclude_pattern%" NEQ "" (tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% --exclude %exclude_pattern% "%~1"  -C "%inpt_dir%" ) else (tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%"  --format %format-choice% "%~1" -C "%inpt_dir%")
 set /a program_error_level=%errorlevel%
 if %program_error_level%==0 (if exist "%fl_nm_only%%RAND%%archive-extension%" (echo:&echo Output File: "%fl_nm_only%%RAND%%archive-extension%"&call :seterror 0) else (call :seterror 1)) else (call :seterror 1)
 echo:tar[%program_error_level%]*******"%~nx0"[%errorlevel%]   ^(Error codes:1=Fail^)
+goto :eof
+:displaycommand
+if "%exclude_pattern%" == "" echo tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%"  --format %format-choice% "%~1" -C "%inpt_dir%"
+if "%exclude_pattern%" NEQ "" echo tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%"  --format %format-choice% --exclude %exclude_pattern% "%~1" -C "%inpt_dir%"
 goto :eof
 :seterror
 exit /b %1
