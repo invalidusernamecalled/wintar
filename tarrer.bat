@@ -5,6 +5,7 @@ set extensionset=0
 call :seterror 1
 if "%~1"==""   (goto printhelp)
 if "%~1"=="/?" (goto printhelp)
+if "%~1"=="/v" (goto printversion)
 call :seterror 0
 if defined archive-choice for %%a in (.tar.gz .tar.bz2 .tar.xz .tar.lzma) do if /i "%archive-choice%"=="%%a" (echo:Using Ext:%archive-choice%&set /a extensionset=1&set archive-extension=%%a)
 if not defined archive-choice echo Using default archive:.tar&set archive-choice=.tar
@@ -57,3 +58,6 @@ echo:
 
 echo archive name is auto-generated. does not add to existing archive.
 echo:
+goto :eof
+:printversion
+certutil -hashfile "%~fp0" md5
