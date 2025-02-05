@@ -8,7 +8,7 @@
 `addtotar.bat EXISTINGarchiveNAME file/folderNAMEtoADD`
 
 #### Edge cases Reviewed:-
-1. Patterns for include or exclude must be checked for validity using `dir` command otherwise the script may hang indefinitely.
+1. Patterns for \*include\* OR \*exclude\* must be checked for validity using `dir` command otherwise the script may hang indefinitely.
 2. File names containing special variable names (enclosed in `%` like `%special_name%` could be mis interpreted but will return a file not found error. (`9009`)
 3. File names cannot contain Double quotes as part of the name, and should be enclosed in double - quotes `"file name"`
 4. Both cases are associated with Shell vulnerability or weakness rather than a script issue. These issues must ideally be checked before passing the arguments to the batch script.
