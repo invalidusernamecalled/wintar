@@ -7,7 +7,8 @@
 
 `addtotar.bat EXISTINGarchiveNAME file/folderNAMEtoADD`
 
-SUPPORTED WILDCARDS: `*`
+###### Supported Wildcards:
+1. `*`
 
 #### Edge cases Reviewed:-
 1. Patterns for \*include\* OR \*exclude\* must be checked for validity using `dir` command otherwise the script may hang indefinitely.
