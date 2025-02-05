@@ -33,7 +33,8 @@ set /a file=1
 if exist "%~1\*" set /a file=0
 if %file%==0 (echo argument is a directory&set /a isdir=0) else (echo argument is a file&set /a isdir=1)
 if exist "%tempname%" echo "%tempname%" exists.
-
+set /a asterisk=0
+echo "%~1"|findstr /r "[*]"&&call :asterisk
 if %isdir% == 1 for /f "delims=" %%i in ('dir /a-d /b "%tempname%"') do set "fl_nm_only=%%~i"&goto continuenext
 :continuenext
 pushd "%~dp0"
@@ -54,6 +55,7 @@ pushd "%~dp0"
 if %isdir% == 0 for /f "delims=" %%i in ('tarrer.bat "%tempname%" /f') do set "fl_nm=%%~i"
 popd
 if %isdir% == 1 set "fl_nm=%~1"
+for /f "delims=" %%a in ("%~1") do echo FILE%%~nxaFILE
 set last_letter=
 :rejig2
 set "last_letter=%fl_nm:~-1,1%"
@@ -66,19 +68,27 @@ if %isdir% == 0 (echo FULL TARGET NAME: %fl_nm%) else (echo FULL TARGET NAME: %f
 set /a RAND=%RANDOM%*9999/32767
 if exist "%fl_nm_only%%RAND%%archive-extension%" goto regen
 set "current_dir=%cd%"
-if %isdir% == 0 pushd "%inpt_dir%"
+pushd "%inpt_dir%"
 
-
+if %isdir% == 1 if "%exclude_pattern%" NEQ "" if %asterisk%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% --exclude %exclude_pattern% "%asterisk_arg%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% --exclude %exclude_pattern% "%asterisk_arg%" &goto :checkoutput 
+if %isdir% == 1 if "%exclude_pattern%" == "" if %asterisk%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% "%asterisk_arg%"&tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%"  --format %format-choice% "%asterisk_arg%"&goto :checkoutput
 if %isdir% == 1 if "%exclude_pattern%" NEQ "" echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% --exclude %exclude_pattern% "%fl_nm%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% --exclude %exclude_pattern% "%fl_nm%"  
 if %isdir% == 1 if "%exclude_pattern%" == "" echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% "%fl_nm%"&tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%"  --format %format-choice% "%fl_nm%" 
 if %isdir% == 0 if "%exclude_pattern%" NEQ "" echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% --exclude %exclude_pattern% "%fl_nm_only%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% --exclude %exclude_pattern% "%fl_nm_only%"  
 if %isdir% == 0 if "%exclude_pattern%" == "" echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% "%fl_nm_only%"&tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%"  --format %format-choice% "%fl_nm_only%"  
-
+:checkoutput
 set /a program_error_level=%errorlevel%
 if %program_error_level%==0 (if exist "%fl_nm_only%%RAND%%archive-extension%" (echo:&echo Output File: "%fl_nm_only%%RAND%%archive-extension%"&move "%fl_nm_only%%RAND%%archive-extension%" "%current_dir%"&cd "%current_dir%"&call :seterror 0) else (call :seterror 1)) else (call :seterror 1)
 echo:tar[%program_error_level%]*******"%~nx0"[%errorlevel%]   ^(Error codes:1=Fail^)
 goto :eof
-
+:asterisk
+set /a asterisk=1
+set /a start+=1
+for /f "tokens=%start% delims=\" %%i in ("%~1") do echo "%%i"|findstr /r "[*]"&&set asterisk_arg=%%i
+echo:searching for *
+if %start% GTR 254 goto :eof
+if not defined asterisk_arg goto asterisk
+goto :eof
 :seterror
 exit /b %1
 :printhelp
