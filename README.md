@@ -10,7 +10,7 @@
 ###### Supported Wildcards:
 1. `*`
 
-#### Edge cases Reviewed:-
+#### Edge and other problematic cases Reviewed:-
 1. Patterns for \*include\* OR \*exclude\* must be checked for validity using `dir` command otherwise the script may hang indefinitely.
 2. File names containing special variable names (enclosed in `%` like `%special_name%` could be mis interpreted but will return a file not found error. (`9009`)
 3. File names cannot contain Double quotes as part of the name, and should be enclosed in double - quotes `"file name"`
