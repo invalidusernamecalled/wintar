@@ -7,6 +7,8 @@
 
 `addtotar.bat EXISTINGarchiveNAME file/folderNAMEtoADD`
 
+SUPPORTED WILDCARDS: `*`
+
 #### Edge cases Reviewed:-
 1. Patterns for \*include\* OR \*exclude\* must be checked for validity using `dir` command otherwise the script may hang indefinitely.
 2. File names containing special variable names (enclosed in `%` like `%special_name%` could be mis interpreted but will return a file not found error. (`9009`)
