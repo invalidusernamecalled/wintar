@@ -13,6 +13,7 @@
 <b>Tips:</b>
 1. The batch script <b>can be copied to a concerned directory before executing.</b> (Eg. usage `tarrer.bat` NOT `%tmp%\tarrer.bat` or `c:\scripts\tarrer.bat`)<sup>SEE WARNING 1.</SUP>
 2. Using absolute paths for the file name/folder name to add (eg. `c:\users\name\desktop\122`) , will result in the resulting archive containing the whole directory tree (of the path) and therefore the tree of folders which are above the destination folder will be present in the archive.
+3. It is better to use relative paths, relative to the script from the script's location.
 
 <b>`tarrer.bat`</b> `"[Directory or FILENAME or *pattern* to include]"` `[{Optional=}exclude_pattern]`<br>
 `addtotar.bat "EXISTINGarchive" "[file or folder toADD]"`<br>
