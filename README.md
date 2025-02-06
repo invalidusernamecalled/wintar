@@ -6,9 +6,9 @@
 <SUP>ENVIRONMENT_VARIABLE</SUP> : `set format-choice=`[{default=}`ustar`|`pax`|`cpio`|`shar`]
 
 <B>WARNING:
-1. The script is *UNABLE to translate RELATIVE PATHS effectively/accurately* </b>*if it is called from another directory*<br> (Eg. `C:\users\Username\Desktop>"c:\scripts\tarrer.bat" ..\Desktop\filename`) --> <b>wrong</b>
-2. It must always be called using its name only from the same directory it resides in.   --> <b>correct</b><br>
-3. File names must be relative to the directory of the script. --> <b>correct</b>
+1. The script is *UNABLE to translate RELATIVE PATHS effectively/accurately* </b>*if it is called from another directory*<br>
+2. It must always be called using its name only from the same directory it resides in.   <br>
+3. File names must be relative to the directory of the script. <br> (Eg. `C:\users\Username\Desktop>"c:\scripts\tarrer.bat" ..\Desktop\folder`) --> <b>wrong</b><br>`C:\users\Username\Desktop\Scripts>"tarrer.bat" "..\folder"` --> <b>correct</b>
 
 <b>Tips:</b>
 1. The batch script <b>can be copied to a concerned directory before executing.</b> (Eg. usage `tarrer.bat` NOT `%tmp%\tarrer.bat` or `c:\scripts\tarrer.bat`)<sup>SEE WARNING 1.</SUP>
