@@ -75,14 +75,13 @@ set "last_letter=%fl_nm:~-1,1%"
 if "%last_letter%"=="\" goto rejig2
 echo:target name only:%fl_nm_only%
 if %isdir% == 0 (echo FULL TARGET NAME: %fl_nm%) else (echo FULL TARGET NAME: %fl_nm%)
+set "current_dir=%cd%"
 :regen
 set /a RAND=%RANDOM%*9999/32767
-if exist "%fl_nm_only%%RAND%%archive-extension%" goto regen
-set "current_dir=%cd%"
+echo:Trying archive name:"%fl_nm_only%%RAND%%archive-extension%"
+if exist "%inpt_dir%\%fl_nm_only%%RAND%%archive-extension%" goto regen
+if exist "%current_dir%\%fl_nm_only%%RAND%%archive-extension%" goto regen
 pushd "%inpt_dir%"
-
-
-
 if %isdir% == 1 if "%exclude_pattern%" NEQ "" if %asterisk%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% --exclude %exclude_pattern% "%asterisk_arg%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% --exclude %exclude_pattern% "%asterisk_arg%" &goto :checkoutput 
 if %isdir% == 1 if "%exclude_pattern%" == "" if %asterisk%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% "%asterisk_arg%"&tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%"  --format %format-choice% "%asterisk_arg%"&goto :checkoutput
 if %isdir% == 1 if "%exclude_pattern%" NEQ "" echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% --exclude %exclude_pattern% "%fl_nm%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% --exclude %exclude_pattern% "%fl_nm%"  
