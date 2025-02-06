@@ -5,7 +5,8 @@
 
 <b>`tarrer.bat`</b> `"[Directory or FILENAME or *pattern* to include]"` `[{Optional=}exclude_pattern]`<br>
 
-<B>WARNING: The script is *unable to translate relative names*  Eg. `..\Desktop\filename` </b>*if called from another directory*<br>and <b>must always be called from the same directory as the script</b><br> or <b>copied to a concerned directory before executing.</b> (Eg. usage `tarrer.bat` NOT `%tmp%\tarrer.bat`)</b>
+<B>WARNING: 1. The script is *unable to translate relative names ACCURATELY*  Eg. `..\Desktop\filename` </b>*if called from another directory*<br>2. It must always be called using its name only from the same directory it resides in. <br>3. File names must be relative to the directory of the script.<br>4. Or <b>copied to a concerned directory before executing.</b> (Eg. usage `tarrer.bat` NOT `%tmp%\tarrer.bat` or `c:\scripts\tarrer.bat`)
+<br><b>2.</b> If you plan on using absolute paths for the file name/folder name to add , please understand the resulting archive will contain the whole directory tree (of the path).
 
 `addtotar.bat "EXISTINGarchive" "[file or folder toADD]"`<br>
 `xtar.bat "ARCHIVE"`
