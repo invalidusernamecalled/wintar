@@ -1,9 +1,12 @@
-###### md5 hash 7aa28dab5a035cb62ebbc292a256cf28
+###### md5 hash beb0ec9b9d5b7c5dbf7201a25fb1e189
 #### Syntax:-
 <SUP>optional</SUP> `ENVIRONMENT VARIABLE` : `set archive-choice=`[{default=}`.tar|.tar.gz`|`.tar.bz2`|`.tar.xz`|`.tar.lzma`]<br>
 <SUP>optional</SUP> `ENVIRONMENT VARIABLE` : `set format-choice=`[{default=}`ustar`|`pax`|`cpio`|`shar`]
 
 <b>`tarrer.bat`</b> `"[Directory or FILENAME or *pattern* to include]"` `[{Optional=}exclude_pattern]`<br>
+
+<B>WARNING: The script is *unable to translate relative names* Eg. `..\Desktop\filename` <br> and must always be called from the script's directory (Eg. `tarrer.bat`)<br> or copied to a concerned directory before executing.</b>
+
 `addtotar.bat "EXISTINGarchive" "[file or folder toADD]"`<br>
 `xtar.bat "ARCHIVEname"`
 
