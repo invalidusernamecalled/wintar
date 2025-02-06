@@ -19,7 +19,7 @@
 `addtotar.bat "EXISTINGarchive" "[file or folder toADD]"`<br>
 `xtar.bat "ARCHIVEtoExtract"`
 
-###### Supported Wildcards:
+###### Supported Wildcards (for Patterns):
 1. `*`
 
 #### Edge (and other problematic) cases Reviewed:-
