@@ -17,7 +17,7 @@
 #### Edge (and other problematic) cases Reviewed:-
 1. Patterns to \*include\* OR \*exclude\* must be checked for validity using `dir` command otherwise the script may hang indefinitely.
 2. The script should always be called in an new shell eg. like `start cmd /c "tarrer.bat .."options""` to avoid using the set variables that have been set in the shell environment by the script during the earlier run.
-3. File names containing special variable names (enclosed in `%` like `%special_name%` could be mis interpreted but *will usually* return a file not found error. (`9009`)
+3. File/Folder names containing special variable names (enclosed in `%` like `%special_name%` could be mis interpreted but *will usually* return a file not found error. (`9009`)
 4. File names cannot contain Double quotes as part of the name, and should be *enclosed* in double - quotes `"file name"`
 5. Many cases are associated with Shell vulnerability or weakness rather than a script issue. These issues must ideally be checked before passing the arguments to the batch script.
 6. If you are using this in a script, it is better to test script behaviour and output with the edge case file names.
