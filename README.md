@@ -5,7 +5,8 @@
 
 <b>`tarrer.bat`</b> `"[Directory or FILENAME or *pattern* to include]"` `[{Optional=}exclude_pattern]`<br>
 
-<B>WARNING: The script is *unable to translate relative names* Eg. `..\Desktop\filename` <br> and must always be called from the same directory as the script<br> or copied to a concerned directory before executing. (Eg. usage `tarrer.bat` NOT `%tmp%\tarrer.bat`)</b>
+<B>WARNING: The script is *unable to translate relative names*  Eg. `..\Desktop\filename` IF
+called from a different directory<br>and must always be called from the same directory as the script<br> or copied to a concerned directory before executing. (Eg. usage `tarrer.bat` NOT `%tmp%\tarrer.bat`)</b>
 
 `addtotar.bat "EXISTINGarchive" "[file or folder toADD]"`<br>
 `xtar.bat "ARCHIVE"`
