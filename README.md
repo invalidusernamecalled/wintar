@@ -1,4 +1,6 @@
-###### md5 hash beb0ec9b9d5b7c5dbf7201a25fb1e189
+###### md5 hash beb0ec9b9d5b7c5dbf7201a25fb1e189<br>
+<img src="wintar.png" width=100>
+
 #### Syntax:-
 <SUP>ENVIRONMENT_VARIABLE</SUP> : `set archive-choice=`[{default=}`.tar|.tar.gz`|`.tar.bz2`|`.tar.xz`|`.tar.lzma`]<br>
 <SUP>ENVIRONMENT_VARIABLE</SUP> : `set format-choice=`[{default=}`ustar`|`pax`|`cpio`|`shar`]
