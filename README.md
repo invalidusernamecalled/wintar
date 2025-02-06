@@ -1,15 +1,14 @@
 ###### md5 hash beb0ec9b9d5b7c5dbf7201a25fb1e189
 #### Syntax:-
-<SUP>optional ENVIRONMENT_VARIABLE</SUP> : `set archive-choice=`[{default=}`.tar|.tar.gz`|`.tar.bz2`|`.tar.xz`|`.tar.lzma`]<br>
-<SUP>optional ENVIRONMENT_VARIABLE</SUP> : `set format-choice=`[{default=}`ustar`|`pax`|`cpio`|`shar`]
-
-<b>`tarrer.bat`</b> `"[Directory or FILENAME or *pattern* to include]"` `[{Optional=}exclude_pattern]`<br>
+<SUP>ENVIRONMENT_VARIABLE</SUP> : `set archive-choice=`[{default=}`.tar|.tar.gz`|`.tar.bz2`|`.tar.xz`|`.tar.lzma`]<br>
+<SUP>ENVIRONMENT_VARIABLE</SUP> : `set format-choice=`[{default=}`ustar`|`pax`|`cpio`|`shar`]
 
 <B>WARNING: 1. The script is *unable to translate relative names ACCURATELY*  Eg. `..\Desktop\filename` </b>*if called from another directory*<br>2. It must always be called using its name only from the same directory it resides in. <br>3. File names must be relative to the directory of the script.<br>4. Or <b>the script can be copied to a concerned directory before executing.</b> (Eg. usage `tarrer.bat` NOT `%tmp%\tarrer.bat` or `c:\scripts\tarrer.bat`)
 <br><b>2.</b> If you plan on using absolute paths for the file name/folder name to add , please understand the resulting archive will contain the whole directory tree (of the path).
 
+<b>`tarrer.bat`</b> `"[Directory or FILENAME or *pattern* to include]"` `[{Optional=}exclude_pattern]`<br>
 `addtotar.bat "EXISTINGarchive" "[file or folder toADD]"`<br>
-`xtar.bat "ARCHIVE"`
+`xtar.bat "ARCHIVEtoExtract"`
 
 ###### Supported Wildcards:
 1. `*`
