@@ -6,6 +6,7 @@
 <b>`tarrer.bat`</b> `"[Directory or FILENAME or *pattern* to include]"` `[{Optional=}exclude_pattern]`
 
 `addtotar.bat EXISTINGarchiveNAME file/folderNAMEtoADD`
+`xtar.bat "ARCHIVEname"`
 
 ###### Supported Wildcards:
 1. `*`
