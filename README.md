@@ -9,7 +9,7 @@
 3. File names must be relative to the directory of the script. --> <b>correct</b>
 
 <b>Tips:</b>
-1. The batch script <b>can be copied to a concerned directory before executing.</b> (Eg. usage `tarrer.bat` NOT `%tmp%\tarrer.bat` or `c:\scripts\tarrer.bat`)
+1. The batch script <b>can be copied to a concerned directory before executing.</b> (Eg. usage `tarrer.bat` NOT `%tmp%\tarrer.bat` or `c:\scripts\tarrer.bat`)<sup>SEE WARNING 1.</SUP>
 2. Using absolute paths for the file name/folder name to add (eg. `c:\users\name\desktop\122`) , please understand the resulting archive will contain the whole directory tree (of the path) and therefore the whole tree of the folders will be present.
 
 <b>`tarrer.bat`</b> `"[Directory or FILENAME or *pattern* to include]"` `[{Optional=}exclude_pattern]`<br>
