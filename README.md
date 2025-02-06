@@ -8,7 +8,7 @@
 <B>WARNING: The script is *unable to translate relative names* Eg. `..\Desktop\filename` <br> and must always be called from the script's directory (Eg. `tarrer.bat`)<br> or copied to a concerned directory before executing.</b>
 
 `addtotar.bat "EXISTINGarchive" "[file or folder toADD]"`<br>
-`xtar.bat "ARCHIVEname"`
+`xtar.bat "ARCHIVE"`
 
 ###### Supported Wildcards:
 1. `*`
