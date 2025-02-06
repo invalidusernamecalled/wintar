@@ -11,7 +11,7 @@
 3. File names must be relative to the directory of the script. <br> (Eg. `C:\users\Username\Desktop>"c:\scripts\tarrer.bat" ..\Desktop\folder`) --> <b>wrong</b><br>`C:\users\Username\Desktop\Scripts>"tarrer.bat" "..\folder"` --> <b>correct</b>
 
 <b>Tips:</b>
-1. The batch script <b>can be copied to a concerned directory before executing.</b> (Eg. usage `tarrer.bat` NOT `%tmp%\tarrer.bat` or `c:\scripts\tarrer.bat`)<sup>SEE WARNING 1.</SUP>
+1. The batch script <b>can be copied to a concerned directory before executing</b> if convenient. (Eg. usage `tarrer.bat` NOT `%tmp%\tarrer.bat` or `c:\scripts\tarrer.bat`)<sup>SEE WARNING 1.</SUP>
 2. Using absolute paths for the file name/folder name to add (eg. `c:\users\name\desktop\122`) , will result in the resulting archive containing the whole directory tree (of the path) and therefore the tree of folders which are above the destination folder will be present in the archive.
 3. It is better to use relative paths, relative to the script from the script's location.
 
