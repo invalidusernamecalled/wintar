@@ -36,7 +36,9 @@
 
 >[!WARNING]
 > <b>Not recommended for GUI use!</b>
->1. do not use Drag 'n' Drop generally, especially with multiple items<br>
->2. multiple items are not supported/processed.<br>
->+ (the script will not be able to parse (multiple or even single in some cases) file/directory names properly if passed thru the GUI because Windows does not pass arguments to the script in a proper format. Handling such unpredicatble format requires immense and an impossible Batch script code. <p>There is also a built in limit to number of arguments that can be parsed in a shell script meaning multiple files (usually beyond 9) cannot use the built in parser.)
->+ <p>It is not recommended to calculate the file hash using the `/v` command, it should be done independently.
+>1. do not use Drag 'n' Drop<br>
+>2. do not use Drag 'n' Drop with multiple items<br>
+>3. multiple items are not processed.<br>
+>+ (the script will not be able to parse file/directory names if passed thru the GUI because Windows does not pass arguments to the script in proper or predictable format.
+>+ Handling such unpredicatble format requires immense and an impossible Batch script code. 
+>+ Bugs have been identified for file/folders using drag and drop that have special characters and are not passed by Windows. It is a windows problem
