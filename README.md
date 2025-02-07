@@ -26,7 +26,7 @@
 1. Archive created is automatically assigned a name.
 2. Archive extracted is automatically assigned a folder.
 
-#### Edge (and other problematic) cases Reviewed:-
+#### Edge and problematic cases:-
 1. Patterns to \*include\* OR \*exclude\* must be checked for validity using `dir` command otherwise the script may hang indefinitely.
 2. The script should always be called in an new shell eg. like `start cmd /c "tarrer.bat .."options""` to avoid using the set variables that have been set in the shell environment by the script during the earlier run.
 3. File/Folder names containing special variable names (enclosed in `%` like `%special_name%` *may* be misinterpreted (untested) but *will usually* return a file not found error. (`9009`)
