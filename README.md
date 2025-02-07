@@ -1,7 +1,6 @@
 ###### md5 hash beb0ec9b9d5b7c5dbf7201a25fb1e189<br>
 <img src="wintar.png" width=100>
 
-#### Syntax:-
 <SUP>ENVIRONMENT_VARIABLE</SUP> : `set archive-choice=`[{default=}`.tar|.tar.gz`|`.tar.bz2`|`.tar.xz`|`.tar.lzma`]<br>
 <SUP>ENVIRONMENT_VARIABLE</SUP> : `set format-choice=`[{default=}`ustar`|`pax`|`cpio`|`shar`]
 
@@ -14,9 +13,10 @@
 1. The batch script <b>can be copied to a the directory containing the folder/file before executing</b> if convenient. (Eg. usage correct-->`tarrer.bat` NOT-->`%tmp%\tarrer.bat` NOT--> `c:\scripts\tarrer.bat`)<sup>SEE WARNING 1.</SUP>
 2. Use either paths relative to the script's location OR use absolute paths.
 
-<b>`tarrer.bat`</b> `"[Directory or FILENAME or *pattern* to include]"` `[{Optional=}exclude_pattern]`<br>
-`addtotar.bat "EXISTING_Uncompressed_archive.tar" "[file or folder toADD]"`<br>
-`xtar.bat "ARCHIVEtoExtract"`
+#### Syntax:-
++ <b>`tarrer.bat`</b> `"[Directory or FILENAME or *pattern* to include]"` `[{Optional=}exclude_pattern]`<br>
++ <b>`addtotar.bat`</b> `"EXISTING_Uncompressed_archive.tar"` `"[file or folder toADD]"`<br>
++ <b>`xtar.bat`</b> `"ARCHIVEtoExtract"`
 
 ###### Supported Wildcards (for Patterns):
 1. `*`
