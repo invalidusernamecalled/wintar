@@ -32,7 +32,7 @@
 3. File/Folder names containing special variable names (enclosed in `%` like `%special_name%` *may* be misinterpreted (untested) but *will usually* return a file not found error. (`9009`)
 4. File names cannot contain Double quotes as part of the name, and should be *enclosed* in double - quotes `"file name"`
 5. Many cases are associated with Shell vulnerability or weakness rather than a script issue. These issues must ideally be checked before passing the arguments to the batch script.
-6. If you are using this in another script, it is better to test this script's behaviour independently and check its output with the edge case file names.
+6. If you wish to use this script in an automated way, it is better to test this script's behaviour independently and check its output with the edge case file names.
 
 >[!WARNING]
 > <b>Not recommended for GUI use!</b>
