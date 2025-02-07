@@ -7,7 +7,7 @@
 <B>WARNING:
 1. The script is *UNABLE to translate RELATIVE PATHS effectively/accurately* </b>*if it is called from another directory*<br>
 2. It must always be called using the script name from the script's location.   <br>
-3. Target name must be relative to the directory of the script. <br> (Eg. `C:\users\Username\Desktop>"c:\scripts\tarrer.bat" .\folder`) --> <b>wrong</b><br>`C:\users\Username\Desktop\Scripts>"tarrer.bat" "..\folder"` --> <b>correct</b>
+3. Target name must be relative to the directory of the script. <br> (Eg. `C:\users\Username\Desktop>"C:\users\Username\Desktop\Scripts\tarrer.bat" .\folder`) --> <b>wrong</b><br>`C:\users\Username\Desktop\Scripts>"tarrer.bat" "..\folder"` --> <b>correct</b><br>
 
 <b>Tips:</b>
 1. The batch script <b>can be copied to a the directory containing the folder/file before executing</b> if convenient. (Eg. usage correct-->`tarrer.bat` NOT-->`%tmp%\tarrer.bat` NOT--> `c:\scripts\tarrer.bat`)<sup>SEE WARNING 1.</SUP>
