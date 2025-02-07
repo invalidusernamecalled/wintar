@@ -11,7 +11,7 @@
 3. File names must be relative to the directory of the script. <br> (Eg. `C:\users\Username\Desktop>"c:\scripts\tarrer.bat" .\folder`) --> <b>wrong</b><br>`C:\users\Username\Desktop\Scripts>"tarrer.bat" "..\folder"` --> <b>correct</b>
 
 <b>Tips:</b>
-1. The batch script <b>can be copied to a the directory containing the folder/file before executing</b> if convenient. (Eg. usage `tarrer.bat` NOT `%tmp%\tarrer.bat` or `c:\scripts\tarrer.bat`)<sup>SEE WARNING 1.</SUP>
+1. The batch script <b>can be copied to a the directory containing the folder/file before executing</b> if convenient. (Eg. usage correct-->`tarrer.bat` NOT-->`%tmp%\tarrer.bat` NOT--> `c:\scripts\tarrer.bat`)<sup>SEE WARNING 1.</SUP>
 2. Use either paths relative to the script's location OR use absolute paths.
 
 <b>`tarrer.bat`</b> `"[Directory or FILENAME or *pattern* to include]"` `[{Optional=}exclude_pattern]`<br>
