@@ -17,6 +17,7 @@
 + <b>`tarrer.bat`</b> `"[Directory or FILENAME or *pattern* to include]"` `[Optional=*exclude_pattern*]`<br>
 + <b>`addtotar.bat`</b> `"EXISTING_Uncompressed_archive.tar"` `"[file or folder toADD]"`<br>
 + <b>`xtar.bat`</b> `"ARCHIVEtoExtract"`
++ <b>`tarlist.bat`</b> "File or Pattern of Archive(s) to list"
 
 ###### Supported Wildcards (for Patterns):
 1. `*`
