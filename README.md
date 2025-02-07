@@ -22,7 +22,7 @@
 ###### Supported Wildcards (for Patterns):
 1. `*`
 
-###### Salient features:
+#### Salient features:-
 1. Archive created is automatically assigned a name.
 2. Archive extracted is automatically assigned a folder.
 
