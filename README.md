@@ -7,7 +7,7 @@
 
 <B>WARNING:
 1. The script is *UNABLE to translate RELATIVE PATHS effectively/accurately* </b>*if it is called from another directory*<br>
-2. It must always be called using the script name only from the script's location.   <br>
+2. It must always be called using the script name from the script's location.   <br>
 3. File names must be relative to the directory of the script. <br> (Eg. `C:\users\Username\Desktop>"c:\scripts\tarrer.bat" .\folder`) --> <b>wrong</b><br>`C:\users\Username\Desktop\Scripts>"tarrer.bat" "..\folder"` --> <b>correct</b>
 
 <b>Tips:</b>
