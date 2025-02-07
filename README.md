@@ -15,7 +15,7 @@
 2. Use either paths relative to the script's location OR use absolute paths.
 
 <b>`tarrer.bat`</b> `"[Directory or FILENAME or *pattern* to include]"` `[{Optional=}exclude_pattern]`<br>
-`addtotar.bat "EXISTINGarchive" "[file or folder toADD]"`<br>
+`addtotar.bat "EXISTING_Uncompressed_archive.tar" "[file or folder toADD]"`<br>
 `xtar.bat "ARCHIVEtoExtract"`
 
 ###### Supported Wildcards (for Patterns):
