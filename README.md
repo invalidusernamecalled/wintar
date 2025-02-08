@@ -17,10 +17,6 @@
 ###### Supported Wildcards (for Patterns):
 1. `*`
 
-<b>Tips:</b>
-1. The batch script <b>can be copied to a the directory containing the folder/file before executing</b> if convenient. (Eg. usage correct-->`tarrer.bat` NOT-->`%tmp%\tarrer.bat` NOT--> `c:\scripts\tarrer.bat`)<sup>SEE WARNING 1.</SUP>
-2. Use paths relative to the script's location OR use absolute paths.
-
 >[!WARNING]
 > <b>Not recommended for GUI use!</b>
 >1. do not use Drag 'n' Drop<br>
