@@ -4,11 +4,6 @@
 <SUP>ENVIRONMENT_VARIABLE</SUP> : `set archive-choice=`[{default=}`.tar|.tar.gz`|`.tar.bz2`|`.tar.xz`|`.tar.lzma`]<br>
 <SUP>ENVIRONMENT_VARIABLE</SUP> : `set format-choice=`[{default=}`ustar`|`pax`|`cpio`|`shar`]
 
-<B>WARNING:
-1. The script is *UNABLE to translate RELATIVE PATHS effectively/accurately* </b>*if it is called from another directory*<br>
-2. It must always be called using the script name from the script's location.   <br>
-3. Target name must be relative to the directory of the script. <br> (Eg. `C:\users\Username\Desktop>"C:\users\Username\Desktop\Scripts\tarrer.bat" .\folder`) --> <b>wrong</b><br>`C:\users\Username\Desktop\Scripts>"tarrer.bat" "..\folder"` --> <b>correct</b><br>
-
 #### Syntax:-
 + <b>`tarrer.bat`</b> "[Directory or FILENAME or *pattern* to include]" `[Optional=*exclude_pattern*]`<br>
 + <b>`addtotar.bat`</b> "Existing (Uncompressed) tar archive" `"[file or folder toADD]"`<br>
