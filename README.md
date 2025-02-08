@@ -11,7 +11,7 @@
 
 #### Syntax:-
 + <b>`tarrer.bat`</b> "[Directory or FILENAME or *pattern* to include]" `[Optional=*exclude_pattern*]`<br>
-+ <b>`addtotar.bat`</b> "EXISTING_Uncompressed_archive.tar" `"[file or folder toADD]"`<br>
++ <b>`addtotar.bat`</b> "EXISTING Uncompressed tar archive" `"[file or folder toADD]"`<br>
 + <b>`xtar.bat`</b> "ARCHIVEtoExtract"
 + <b>`tarlist.bat`</b> "Archive name or Pattern to list"
 
