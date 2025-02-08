@@ -13,7 +13,7 @@
 + <b>`tarrer.bat`</b> "[Directory or FILENAME or *pattern* to include]" `[Optional=*exclude_pattern*]`<br>
 + <b>`addtotar.bat`</b> "EXISTING_Uncompressed_archive.tar" `"[file or folder toADD]"`<br>
 + <b>`xtar.bat`</b> "ARCHIVEtoExtract"
-+ <b>`tarlist.bat`</b> "File or Pattern of Archive(s) to list"
++ <b>`tarlist.bat`</b> "Archive name or Pattern to list"
 
 #### Salient features:-
 1. Archive created is automatically assigned a name.
