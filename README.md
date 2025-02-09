@@ -20,7 +20,7 @@
 >[!WARNING]
 > <b>Not for GUI use!</b>
 >1. do not use Drag 'n' Drop<br>
->2. do Drag 'n' Drop multiple items<br>
+>2. do not Drag 'n' Drop multiple items<br>
 >3. multiple items are not processed.<br>
 >+ (the script will not be able to parse file/directory names if passed thru the GUI because Windows does not pass arguments to the script in proper or predictable format.
 >+ Handling such unpredicatble format requires immense and an impossible Batch script code. 
