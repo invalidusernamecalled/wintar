@@ -24,7 +24,7 @@
 >3. multiple items are not processed.<br>
 >+ (the script will not be able to parse file/directory names if passed thru the GUI because Windows does not pass arguments to the script in proper or predictable format.
 >+ Handling such unpredictable format requires an impossible Batch script code. 
->+ Bugs have been identified for file/folders using drag and drop that have special characters and are not passed by Windows. It is a windows problem
+>+ Issues have been identified for file/folders using drag and drop that have special characters not passed by Windows in a proper and expected way. (It is a windows issue)
 
 >### Edge and problematic cases:-
 >1. Patterns to \*include\* OR \*exclude\* must be checked for validity using `dir` command otherwise the script may hang indefinitely.
