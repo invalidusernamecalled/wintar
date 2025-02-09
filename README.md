@@ -18,7 +18,7 @@
 1. `*`
 
 >[!WARNING]
-> <b>Not recommended for GUI use!</b>
+> <b>Not for GUI use!</b>
 >1. do not use Drag 'n' Drop<br>
 >2. do not use Drag 'n' Drop with multiple items<br>
 >3. multiple items are not processed.<br>
