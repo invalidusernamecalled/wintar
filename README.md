@@ -23,7 +23,7 @@
 >2. do not Drag 'n' Drop multiple items<br>
 >3. multiple items are not processed.<br>
 >+ (the script will not be able to parse file/directory names if passed thru the GUI because Windows does not pass arguments to the script in proper or predictable format.
->+ Handling such unpredicatble format requires an impossible Batch script code. 
+>+ Handling such unpredictable format requires an impossible Batch script code. 
 >+ Bugs have been identified for file/folders using drag and drop that have special characters and are not passed by Windows. It is a windows problem
 
 >### Edge and problematic cases:-
