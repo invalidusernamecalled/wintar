@@ -82,9 +82,9 @@ set /a RAND=%RANDOM%*9999/32767
 echo:Trying archive name:"%fl_nm_only%%RAND%%archive-extension%"
 if exist "%inpt_dir%\%fl_nm_only%%RAND%%archive-extension%" goto regen
 if exist "%current_dir%\%fl_nm_only%%RAND%%archive-extension%" goto regen
-
-if %isdir% == 0 pushd "%inpt_dir%"
-
+set /a timetochuck=0
+if %isdir% == 0 pushd "%inpt_dir%"&goto :checkdirclown
+:All_is_Well
 if %isdir% == 1 if "%exclude_pattern%" NEQ "" if %asterisk%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% --exclude %exclude_pattern% "%asterisk_arg%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% --exclude %exclude_pattern% "%asterisk_arg%" &goto :checkoutput 
 if %isdir% == 1 if "%exclude_pattern%" == "" if %asterisk%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% "%asterisk_arg%"&tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%"  --format %format-choice% "%asterisk_arg%"&goto :checkoutput
 if %isdir% == 1 if "%exclude_pattern%" NEQ "" echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% --exclude %exclude_pattern% "%fl_nm%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% --exclude %exclude_pattern% "%fl_nm%"  
@@ -94,10 +94,26 @@ if %isdir% == 0 if "%exclude_pattern%" == "" echo:tar %createparam% -f "%fl_nm_o
 :checkoutput
 set /a program_error_level=%errorlevel%
 if %program_error_level%==0 (if exist "%fl_nm_only%%RAND%%archive-extension%" (echo:&echo Output File: "%fl_nm_only%%RAND%%archive-extension%"&move "%fl_nm_only%%RAND%%archive-extension%" "%current_dir%"&call :seterror 0&cd "%current_dir%") else (call :seterror 1)) else (call :seterror 1)
-if %program_error_level% NEQ 0  if exist "%fl_nm_only%%RAND%%archive-extension%" echo:Output File: "%fl_nm_only%%RAND%%archive-extension%"&echo:tar returned errors. file may be corrupt.
+if %program_error_level% NEQ 0  if exist "%fl_nm_only%%RAND%%archive-extension%" echo:Output File: "%fl_nm_only%%RAND%%archive-extension%"
 echo:tar[%program_error_level%]*******"%~nx0"[%errorlevel%]   ^(Error codes:1=Fail^)
-goto :eof
+if %program_error_level% NEQ 0  if exist "%fl_nm_only%%RAND%%archive-extension%" echo:tar returned errors. file may be corrupt.
 
+goto :eof
+:checkdirclown
+:regenrate
+set /a timetochuck+=1
+set "filechuck=%date%%time%.givehertz"
+if %timetochuck% GTR 100 goto All_is_Well
+if exist %filechuck% goto regenrate
+for /f "delims=" %%i in ('where cmd') do set "bakra=%%i"
+copy "%bakra%" "%filechuck%"
+if %errorlevel%==0 goto All_is_Well
+if %errorlevel% NEQ 0 echo Problems writing file in concerned directory.
+if exist %filechuck% del %filechuck%
+popd
+if %isdir% == 0 if "%exclude_pattern%" NEQ "" echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% --exclude %exclude_pattern% "%fl_nm%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% --exclude %exclude_pattern% "%fl_nm%"  
+if %isdir% == 0 if "%exclude_pattern%" == "" echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% "%fl_nm%"&tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%"  --format %format-choice% "%fl_nm%" 
+goto checkoutput
 :seterror
 exit /b %1
 :printhelp
