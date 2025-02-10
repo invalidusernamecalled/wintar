@@ -1,6 +1,6 @@
 @echo off
 set /a counter=1
-if exist "%~1" echo FILE PATTERN FOUND
+if not exist "%~1" echo:File not found&goto :eof
 for /f "delims=" %%i in ('dir /b /a-d "%~1"') do (
 pushd "%~dp1"
 echo::@listing for "%%~i"
