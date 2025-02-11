@@ -50,29 +50,28 @@ if "%asterisk_arg%" == "" goto asterisk
 if %asterisk%==1 for /f "delims=" %%i in ('dir /b "%tempname%"') do set "fl_nm_only=%%~i"&goto continuenext
 if %isdir% == 1 for /f "delims=" %%i in ('dir /a-d /b "%tempname%"') do set "fl_nm_only=%%~i"&goto continuenext
 if %isdir% == 0 for /f "delims=" %%i in ('echo:^&"%~fp0" "%tempname%" /n "%wrkdir%"') do set "fl_nm_only=%%~i"
-
 :continuenext
 
 
 
 for /f "delims=" %%i in ('echo:^&"%~fp0" "%tempname%\.." /f "%wrkdir%"') do set "inpt_dir=%%~i"&set "fl_nm=%%~i"
 
-set last_letter=
-:rejig1
-set "last_letter=%inpt_dir:~-1,1%"
-if "%last_letter%"=="\" (set "inpt_dir=%inpt_dir:~0,-1%")
-set "last_letter=%inpt_dir:~-1,1%"
-if "%last_letter%"=="\" (goto rejig1)
+REM set last_letter=
+REM :rejig1
+REM set "last_letter=%inpt_dir:~-1,1%"
+REM if "%last_letter%"=="\" (set "inpt_dir=%inpt_dir:~0,-1%")
+REM set "last_letter=%inpt_dir:~-1,1%"
+REM if "%last_letter%"=="\" (goto rejig1)
 echo:directory:"%inpt_dir%":will change to it before processing.
 echo:
-set last_letter=
-:rejig2
-set "last_letter=%fl_nm:~-1,1%"
-if "%last_letter%"=="\" (set "inpt_dir=%fl_nm:~0,-1%")
-set "last_letter=%inpt_dir:~-1,1%"
-if "%last_letter%"=="\" goto rejig2
+REM set last_letter=
+REM :rejig2
+REM set "last_letter=%fl_nm:~-1,1%"
+REM if "%last_letter%"=="\" (set "inpt_dir=%fl_nm:~0,-1%")
+REM set "last_letter=%inpt_dir:~-1,1%"
+REM if "%last_letter%"=="\" goto rejig2
 echo:target name only:%fl_nm_only%
-if %isdir%==0 (echo FULL TARGET NAME: %fl_nm%\%fl_name_only%) else (echo FULL TARGET NAME: %fl_nm%)
+echo FULL TARGET NAME: "%inpt_dir%\%fl_nm_only%"
 set "current_dir=%cd%"
 set probcur=0
 set /a timetochuck=0
@@ -90,7 +89,7 @@ set /a timetochuck+=1
 if %timetochuck% GTR 100 goto ZZig
 for /f "delims=" %%i in ('where cmd') do set "bakra=%%i"
 copy "%bakra%" "%fl_nm_only%%RAND%%archive-extension%" 2>NUL 1>NUL
-if %errorlevel%==0 del "%fl_nm_only%%RAND%%archive-extension%" 2>NUL&goto ZZig
+if %errorlevel%==0 del "%fl_nm_only%%RAND%%archive-extension%" 2>NUL&echo:Can write to current directory&goto ZZig
 if %errorlevel% NEQ 0 echo Problems writing file in current directory.&set /a probcur=1
 echo:will save to desktop
 cd "%userprofile%\desktop"
@@ -105,12 +104,13 @@ if %isdir%==1 if %asterisk%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%arc
 
 if %isdir%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm%"  
 
-if %isdir%==0 if %probcur%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm%\%fl_nm_only%" &goto checkoutput 
+if %isdir%==0 if %probcur%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%fl_nm_only%" &goto checkoutput 
 
 if %isdir%==0 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%"  
 
   
 :checkoutput
+echo:Output directory:"%cd%"
 set /a program_error_level=%errorlevel%
 if %program_error_level%==0 (if exist "%fl_nm_only%%RAND%%archive-extension%" (echo:&echo Output File: "%fl_nm_only%%RAND%%archive-extension%"&if %probcur%==0 move "%fl_nm_only%%RAND%%archive-extension%" "%current_dir%"&call :seterror 0&cd "%current_dir%") else (call :seterror 1)) else (call :seterror 1)
 if %program_error_level% NEQ 0  if exist "%fl_nm_only%%RAND%%archive-extension%" echo:Output File: "%fl_nm_only%%RAND%%archive-extension%"
@@ -132,7 +132,7 @@ if %errorlevel% NEQ 0 echo Problems writing file in target's directory.
 del "%fl_nm_only%%RAND%%archive-extension%"
 popd
 
-if %isdir% == 0 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm%\%fl_nm_only%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%fl_nm_only%"  
+if %isdir% == 0 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%fl_nm_only%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%fl_nm_only%"  
 
 goto checkoutput
 :seterror
