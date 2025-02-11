@@ -1,4 +1,4 @@
-###### md5 hash d8d397dc9c6b530edd31971fc62d53c7<br>
+###### md5 hash 37cbc035d2a79ee6eda98659b98903d1<br>
 <img src="wintar.png" width=100>
 
 <SUP>ENVIRONMENT_VARIABLE</SUP> : `set archive-choice=`(default=)`.tar|.tar.gz`|`.tar.bz2`|`.tar.xz`|`.tar.lzma`<br>
