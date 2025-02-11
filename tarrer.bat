@@ -126,7 +126,7 @@ goto :eof
 :istoor
 set drive_letter=%fl_nm:~0,1%
 echo It is %drive_letter%:
-echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%drive_letter%:\"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%drive_letter%:\"
+echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%drive_letter%:\*"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%drive_letter%:\*"
 goto checkoutput
 goto :eof
 :checkdirclown
