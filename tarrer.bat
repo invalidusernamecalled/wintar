@@ -10,13 +10,13 @@ if "%~1"==""   (goto printhelp)
 if "%~1"=="/?" (goto printhelp)
 if "%~1"=="/v" (goto printversion)
 set "tempname=%~1"
-set last_letter=
+REM set last_letter=
 :rejig
-set "last_letter=%tempname:~-1,1%"
-if "%last_letter%"=="\" (set "tempname=%tempname:~0,-1%")
-set "last_letter=%tempname:~-1,1%"
-if "%last_letter%"=="\" (goto rejig)
-call :seterror 0
+REM set "last_letter=%tempname:~-1,1%"
+REM if "%last_letter%"=="\" (set "tempname=%tempname:~0,-1%")
+REM set "last_letter=%tempname:~-1,1%"
+REM if "%last_letter%"=="\" (goto rejig)
+REM call :seterror 0
 if defined archive-choice for %%a in (.tar.gz .tar.bz2 .tar.xz .tar.lzma) do if /i "%archive-choice%"=="%%a" (echo:Using Ext:%archive-choice%&set /a extensionset=1&set archive-extension=%%a)
 if not defined archive-choice echo Using default archive:.tar&set archive-choice=.tar
 if %extensionset%==0 set archive-extension=.tar
@@ -96,7 +96,9 @@ cd "%userprofile%\desktop"
 set "current_dir=%cd%"
 :ZZig
 set /a timetochuck=0
+set "fl_nm_only_args=\%fl_nm_only%"
 if %probcur%==1 if %asterisk%==1 goto manage
+if %asterisk%==1 goto manage
 if %isdir%==0 pushd "%inpt_dir%"&goto :checkdirclown
 :All_is_Well
 if %isdir%==1 if %asterisk%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%asterisk_arg%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%asterisk_arg%" &goto :checkoutput 
@@ -104,7 +106,7 @@ if %isdir%==1 if %asterisk%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%arc
 
 if %isdir%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm%"  
 
-if %isdir%==0 if %probcur%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%fl_nm_only%" &goto checkoutput 
+if %isdir%==0 if %probcur%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%%fl_nm_only_args%" &goto checkoutput 
 
 if %isdir%==0 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%"  
 
@@ -119,6 +121,7 @@ if %program_error_level% NEQ 0  if exist "%fl_nm_only%%RAND%%archive-extension%"
 
 goto :eof
 :manage
+
 if %isdir%==1 if %asterisk%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%asterisk_arg%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%asterisk_arg%" &goto :checkoutput 
 goto :eof
 :checkdirclown
@@ -132,7 +135,7 @@ if %errorlevel% NEQ 0 echo Problems writing file in target's directory.
 del "%fl_nm_only%%RAND%%archive-extension%"
 popd
 
-if %isdir% == 0 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%fl_nm_only%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%fl_nm_only%"  
+if %isdir% == 0 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%fl_nm_only%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%%fl_nm_only_args%"  
 
 goto checkoutput
 :seterror
