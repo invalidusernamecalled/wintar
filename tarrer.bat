@@ -69,8 +69,10 @@ REM set "last_letter=%fl_nm:~-1,1%"
 REM if "%last_letter%"=="\" (set "inpt_dir=%fl_nm:~0,-1%")
 REM set "last_letter=%inpt_dir:~-1,1%"
 REM if "%last_letter%"=="\" goto rejig2
-echo:target name only:%fl_nm_only%
-echo FULL TARGET NAME: "%inpt_dir%\%fl_nm_only%"
+if %isroot%==0 echo:target name only:%fl_nm_only%
+if %isroot%==0 echo FULL TARGET NAME: "%inpt_dir%\%fl_nm_only%"
+if %isroot%==1 echo:target name only:
+if %isroot%==1 echo:FULL TARGET NAME:%inpt_dir%
 set "current_dir=%cd%"
 set probcur=0
 set /a timetochuck=0
@@ -112,6 +114,7 @@ if %isdir%==0 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" 
 
   
 :checkoutput
+echo:
 echo:Output directory:"%cd%"
 set /a program_error_level=%errorlevel%
 if %program_error_level%==0 (if exist "%fl_nm_only%%RAND%%archive-extension%" (echo:&echo Output File: "%fl_nm_only%%RAND%%archive-extension%"&move "%fl_nm_only%%RAND%%archive-extension%" "%current_dir%"&call :seterror 0&cd /d "%current_dir%") else (call :seterror 1))
