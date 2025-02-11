@@ -4,8 +4,8 @@ set inpt_fle=
 set inpt_dir=
 set extensionset=0
 call :seterror 1
-if "%~2"=="/f" (cd "%~3" >NUL&echo "%~fp1"&goto :eof)
-if "%~2"=="/n" (cd "%~3" >NUL&echo "%~nx1"&goto :eof)
+if "%~2"=="/f" (cd /d "%~3" >NUL&echo "%~fp1"&goto :eof)
+if "%~2"=="/n" (cd /d "%~3" >NUL&echo "%~nx1"&goto :eof)
 if "%~1"==""   (goto printhelp)
 if "%~1"=="/?" (goto printhelp)
 if "%~1"=="/v" (goto printversion)
@@ -47,15 +47,14 @@ for /f "tokens=%start% delims=\" %%i in ("%~1") do echo searching:"%%i"&echo "%%
 if %start% GTR 254 goto :eof
 if "%asterisk_arg%" == "" goto asterisk
 :process
+set /a isroot=0
 if %asterisk%==1 for /f "delims=" %%i in ('dir /b "%tempname%"') do set "fl_nm_only=%%~i"&goto continuenext
 if %isdir% == 1 for /f "delims=" %%i in ('dir /a-d /b "%tempname%"') do set "fl_nm_only=%%~i"&goto continuenext
-if %isdir% == 0 for /f "delims=" %%i in ('echo:^&"%~fp0" "%tempname%" /n "%wrkdir%"') do set "fl_nm_only=%%~i"
+if %isdir% == 0 for /f "delims=" %%i in ('echo:^&"%~fp0" "%tempname%\" /n "%wrkdir%"') do set "fl_nm_only=%%~i"
+if %isdir% == 0 for /f "delims=" %%i in ('echo:^&"%~fp0" "%tempname%\.." /n "%wrkdir%"') do if "%%~i"=="" set /a isroot=1
 :continuenext
-
-
-
+if %isroot%==1 echo :IS ROOT?!
 for /f "delims=" %%i in ('echo:^&"%~fp0" "%tempname%\.." /f "%wrkdir%"') do set "inpt_dir=%%~i"&set "fl_nm=%%~i"
-
 REM set last_letter=
 REM :rejig1
 REM set "last_letter=%inpt_dir:~-1,1%"
@@ -92,11 +91,12 @@ copy "%bakra%" "%fl_nm_only%%RAND%%archive-extension%" 2>NUL 1>NUL
 if %errorlevel%==0 del "%fl_nm_only%%RAND%%archive-extension%" 2>NUL&echo:Can write to current directory&goto ZZig
 if %errorlevel% NEQ 0 echo Problems writing file in current directory.&set /a probcur=1
 echo:will save to desktop
-cd "%userprofile%\desktop"
+cd /d "%userprofile%\desktop"
 set "current_dir=%cd%"
 :ZZig
-set /a timetochuck=0
-set "fl_nm_only_args=\%fl_nm_only%"
+set fl_nm_only_args=
+if "%fl_nm_only%" NEQ "" set "fl_nm_only_args=\%fl_nm_only%"
+if %isroot%==1 goto :istoor
 if %probcur%==1 if %asterisk%==1 goto manage
 if %asterisk%==1 goto manage
 if %isdir%==0 pushd "%inpt_dir%"&goto :checkdirclown
@@ -114,15 +114,20 @@ if %isdir%==0 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" 
 :checkoutput
 echo:Output directory:"%cd%"
 set /a program_error_level=%errorlevel%
-if %program_error_level%==0 (if exist "%fl_nm_only%%RAND%%archive-extension%" (echo:&echo Output File: "%fl_nm_only%%RAND%%archive-extension%"&if %probcur%==0 move "%fl_nm_only%%RAND%%archive-extension%" "%current_dir%"&call :seterror 0&cd "%current_dir%") else (call :seterror 1)) else (call :seterror 1)
+if %program_error_level%==0 (if exist "%fl_nm_only%%RAND%%archive-extension%" (echo:&echo Output File: "%fl_nm_only%%RAND%%archive-extension%"&if %probcur%==0 move "%fl_nm_only%%RAND%%archive-extension%" "%current_dir%"&call :seterror 0&cd /d "%current_dir%") else (call :seterror 1)) else (call :seterror 1)
 if %program_error_level% NEQ 0  if exist "%fl_nm_only%%RAND%%archive-extension%" echo:Output File: "%fl_nm_only%%RAND%%archive-extension%"
 echo:tar[%program_error_level%]*******"%~nx0"[%errorlevel%]   ^(Error codes:1=Fail^)
 if %program_error_level% NEQ 0  if exist "%fl_nm_only%%RAND%%archive-extension%" echo:tar returned errors. file may be corrupt.
 
 goto :eof
 :manage
-
 if %isdir%==1 if %asterisk%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%asterisk_arg%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%asterisk_arg%" &goto :checkoutput 
+goto :eof
+:istoor
+set drive_letter=%fl_nm:~0,1%
+echo It is %drive_letter%:
+echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%drive_letter%:"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%drive_letter%:"
+goto checkoutput
 goto :eof
 :checkdirclown
 :regenrate
@@ -135,7 +140,7 @@ if %errorlevel% NEQ 0 echo Problems writing file in target's directory.
 del "%fl_nm_only%%RAND%%archive-extension%"
 popd
 
-if %isdir% == 0 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%fl_nm_only%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%%fl_nm_only_args%"  
+if %isdir% == 0 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%%fl_nm_only_args%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%%fl_nm_only_args%"  
 
 goto checkoutput
 :seterror
