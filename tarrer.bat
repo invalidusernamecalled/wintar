@@ -69,7 +69,7 @@ REM set "last_letter=%fl_nm:~-1,1%"
 REM if "%last_letter%"=="\" (set "inpt_dir=%fl_nm:~0,-1%")
 REM set "last_letter=%inpt_dir:~-1,1%"
 REM if "%last_letter%"=="\" goto rejig2
-if %isroot%==0 echo:target name only:%fl_nm_only%
+if %isroot%==0 echo:target name only:"%fl_nm_only%"
 if %isroot%==0 echo FULL TARGET NAME: "%inpt_dir%\%fl_nm_only%"
 if %isroot%==1 echo:target name only:
 if %isroot%==1 echo:FULL TARGET NAME:%inpt_dir%
@@ -101,12 +101,15 @@ if "%fl_nm_only%" NEQ "" set "fl_nm_only_args=\%fl_nm_only%"
 if %isroot%==1 goto :istoor
 if %probcur%==1 if %asterisk%==1 goto manage
 if %asterisk%==1 goto manage
-if %isdir%==0 pushd "%inpt_dir%"&goto :checkdirclown
+pushd "%inpt_dir%"&goto :checkdirclown
+if %isdir%==1 if %targetyes% neq 1 popd
+if %isdir%==1 if %probcur% neq 0  popd
 :All_is_Well
 if %isdir%==1 if %asterisk%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%asterisk_arg%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%asterisk_arg%" &goto :checkoutput 
 
+if %isdir%==1 if %targetyes%==1 if %probcur%==0 pushd "%inpt_dir%"&echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%"&goto :checkoutput
 
-if %isdir%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm%"  
+if %isdir%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%fl_nm_only%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%fl_nm_only%"  
 
 if %isdir%==0 if %probcur%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%%fl_nm_only_args%" &goto checkoutput 
 
@@ -115,7 +118,7 @@ if %isdir%==0 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" 
   
 :checkoutput
 echo:
-echo:Output directory:"%cd%"
+echo:Output directory:"%current_dir%"
 set /a program_error_level=%errorlevel%
 if %program_error_level%==0 (if exist "%fl_nm_only%%RAND%%archive-extension%" (echo:&echo Output File: "%fl_nm_only%%RAND%%archive-extension%"&move "%fl_nm_only%%RAND%%archive-extension%" "%current_dir%"&call :seterror 0&cd /d "%current_dir%") else (call :seterror 1))
 if %program_error_level% NEQ 0  if exist "%fl_nm_only%%RAND%%archive-extension%" echo:Output File: "%fl_nm_only%%RAND%%archive-extension%"&call :seterror 0&cd /d "%current_dir%"
@@ -134,11 +137,12 @@ goto checkoutput
 goto :eof
 :checkdirclown
 :regenrate
+set /a targetyes=0
 set /a timetochuck+=1
 if %timetochuck% GTR 100 goto All_is_Well
 for /f "delims=" %%i in ('where cmd') do set "bakra=%%i"
 copy "%bakra%" "%fl_nm_only%%RAND%%archive-extension%" 2>NUL 1>NUL
-if %errorlevel%==0 goto All_is_Well
+if %errorlevel%==0 set /a targetyes=1&goto All_is_Well
 if %errorlevel% NEQ 0 echo Problems writing file in target's directory.
 del "%fl_nm_only%%RAND%%archive-extension%"
 popd
