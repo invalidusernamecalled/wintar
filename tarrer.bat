@@ -10,13 +10,13 @@ if "%~1"==""   (goto printhelp)
 if "%~1"=="/?" (goto printhelp)
 if "%~1"=="/v" (goto printversion)
 set "tempname=%~1"
-REM set last_letter=
+set last_letter=
 :rejig
-REM set "last_letter=%tempname:~-1,1%"
-REM if "%last_letter%"=="\" (set "tempname=%tempname:~0,-1%")
-REM set "last_letter=%tempname:~-1,1%"
-REM if "%last_letter%"=="\" (goto rejig)
-REM call :seterror 0
+set "last_letter=%tempname:~-1,1%"
+if "%last_letter%"=="\" (set "tempname=%tempname:~0,-1%")
+set "last_letter=%tempname:~-1,1%"
+if "%last_letter%"=="\" (goto rejig)
+call :seterror 0
 if defined archive-choice for %%a in (.tar.gz .tar.bz2 .tar.xz .tar.lzma) do if /i "%archive-choice%"=="%%a" (echo:Using Ext:%archive-choice%&set /a extensionset=1&set archive-extension=%%a)
 if not defined archive-choice echo Using default archive:.tar&set archive-choice=.tar
 if %extensionset%==0 set archive-extension=.tar
@@ -50,7 +50,7 @@ if "%asterisk_arg%" == "" goto asterisk
 set /a isroot=0
 if %asterisk%==1 for /f "delims=" %%i in ('dir /b "%tempname%"') do set "fl_nm_only=%%~i"&goto continuenext
 if %isdir% == 1 for /f "delims=" %%i in ('dir /a-d /b "%tempname%"') do set "fl_nm_only=%%~i"&goto continuenext
-if %isdir% == 0 for /f "delims=" %%i in ('echo:^&"%~fp0" "%tempname%\" /n "%wrkdir%"') do set "fl_nm_only=%%~i"
+if %isdir% == 0 for /f "delims=" %%i in ('echo:^&"%~fp0" "%tempname%" /n "%wrkdir%"') do set "fl_nm_only=%%~i"
 if %isdir% == 0 for /f "delims=" %%i in ('echo:^&"%~fp0" "%tempname%\.." /n "%wrkdir%"') do if "%%~i"=="" set /a isroot=1
 :continuenext
 if %isroot%==1 echo :IS ROOT?!
