@@ -1,8 +1,9 @@
 ###### md5 hash 831b904c97fa38f45490111fa40d6ca2<br>
 <img src="wintar.png" width=100>
 
-<SUP>ENVIRONMENT_VARIABLE</SUP> : `set archive-choice=`(default=)`.tar|.tar.gz`|`.tar.bz2`|`.tar.xz`|`.tar.lzma`<br>
-<SUP>ENVIRONMENT_VARIABLE</SUP> : `set format-choice=`(default=)`ustar`|`pax`|`cpio`|`shar`
+<SUP>ENVIRONMENT_VARIABLE</SUP> : 
+- `set archive-choice=`(default=)`.tar|.tar.gz`|`.tar.bz2`|`.tar.xz`|`.tar.lzma`<br>
+- `set format-choice=`(default=)`ustar`|`pax`|`cpio`|`shar`
 
 #### Syntax:-
 + <b>`tarrer.bat`</b> "[Directory or FILENAME or *pattern* to include]" `[Optional=*exclude_pattern*]`<br>
