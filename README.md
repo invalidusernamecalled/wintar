@@ -1,7 +1,5 @@
 ###### md5 hash 831b904c97fa38f45490111fa40d6ca2<br>
-<img src="wintar.png" width=100>
-
-<SUP>ENVIRONMENT_VARIABLE</SUP> : 
+<img src="wintar.png" width=100><p>
 - `set archive-choice=`(default=)`.tar|.tar.gz`|`.tar.bz2`|`.tar.xz`|`.tar.lzma`<br>
 - `set format-choice=`(default=)`ustar`|`pax`|`cpio`|`shar`
 
