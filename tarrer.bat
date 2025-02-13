@@ -69,10 +69,13 @@ REM set "last_letter=%fl_nm:~-1,1%"
 REM if "%last_letter%"=="\" (set "inpt_dir=%fl_nm:~0,-1%")
 REM set "last_letter=%inpt_dir:~-1,1%"
 REM if "%last_letter%"=="\" goto rejig2
+if %asterisk%==1 echo:target name only:"%asterisk_arg%"
+if %asterisk%==1 echo FULL TARGET NAME: "%inpt_dir%\%asterisk_arg%"&goto :leavetargetprint
 if %isroot%==0 echo:target name only:"%fl_nm_only%"
 if %isroot%==0 echo FULL TARGET NAME: "%inpt_dir%\%fl_nm_only%"
 if %isroot%==1 echo:target name only:
 if %isroot%==1 echo:FULL TARGET NAME:%inpt_dir%
+:leavetargetprint
 set "current_dir=%cd%"
 set probcur=0
 set /a timetochuck=0
@@ -127,6 +130,8 @@ if %program_error_level% NEQ 0  if exist "%fl_nm_only%%RAND%%archive-extension%"
 
 goto :eof
 :manage
+if %probcur%==0 if "%cd%"=="%inpt_dir%" echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%asterisk_arg%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%asterisk_arg%" &goto :checkoutput
+
 if %isdir%==1 if %asterisk%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%asterisk_arg%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%asterisk_arg%" &goto :checkoutput 
 goto :eof
 :istoor
