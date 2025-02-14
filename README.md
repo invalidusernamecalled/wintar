@@ -27,7 +27,7 @@
 
 #### Edge and problematic cases:-
 1. Do not pass file/folder names or arguments containing ampersand `%` especially some letter or word enclosed in ampersands like `some %file%.txt` as it is subject to mis interpretation by the shell.
-2.  File/Folder names containing special variable names (enclosed in `%` like `%special_name%` *may* be misinterpreted (untested) but *will usually* return a file not found error. (`9009`)
+2.  File/Folder names containing special variable names (enclosed in `%` like `%specialname%` *may* be misinterpreted (untested) but *will usually* return a file not found error. (`9009`)
 3. File names cannot contain Double quotes as part of the name, and should be *enclosed* in double - quotes `"file name"`
 4. Many cases are associated with Shell vulnerability or weakness rather than a script issue. These issues must ideally be checked before passing the arguments to the batch script.
 5. If you wish to use this script in an automated way, it is better to study this script's behaviour independently and check its output with the edge case file names.
