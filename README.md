@@ -26,7 +26,7 @@
 >+ Issues have been identified for file/folders using drag and drop that have special characters not passed by Windows in a proper and expected way. (It is a windows issue)
 
 >### Edge and problematic cases:-
->1. Patterns to \*include\* OR \*exclude\* must be checked for validity using `dir` command otherwise the script may hang indefinitely.
+>1. Patterns to \*exclude\* must be checked for validity using `dir` command otherwise the script may hang indefinitely.
 >2. Do not pass file/folder names or arguments containing ampersand `%` especially some letter or word enclosed in ampersands like `some %file%.txt` as it is subject to mis interpretation by the shell.
 >3. File/Folder names containing special variable names (enclosed in `%` like `%special_name%` *may* be misinterpreted (untested) but *will usually* return a file not found error. (`9009`)
 >4. File names cannot contain Double quotes as part of the name, and should be *enclosed* in double - quotes `"file name"`
