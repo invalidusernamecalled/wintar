@@ -46,9 +46,11 @@ goto process
 set /a asterisk=1
 set /a start+=1
 echo:searching for *
-for /f "tokens=%start% delims=\" %%i in ("%~1") do echo searching:"%%i"&echo "%%i"|findstr /r "[*]"&&set asterisk_arg=%%i
-if %start% GTR 254 goto :eof
+for /f "tokens=%start% delims=\" %%i in ("%~1") do echo searching:"%%i"&echo "%%i"|findstr /r "[*]"&&set "asterisk_arg=%%i"
+if %start% GTR 254 goto secondtry
 if "%asterisk_arg%" == "" goto asterisk
+:secondtry
+echo "%~1"|findstr /r "[*]"&&set "asterisk_arg=%~1"
 :process
 set /a isroot=0
 if %asterisk%==1 for /f "delims=" %%i in ('dir /b "%tempname%"') do set "fl_nm_only=%%~i"&goto continuenext
