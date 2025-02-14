@@ -16,7 +16,7 @@ set "last_letter=%tempname:~-1,1%"
 if "%last_letter%"=="\" (set "tempname=%tempname:~0,-1%")
 set "last_letter=%tempname:~-1,1%"
 if "%last_letter%"=="\" (goto rejig)
-call :seterror 0
+
 if defined archive-choice for %%a in (.tar.gz .tar.bz2 .tar.xz .tar.lzma) do if /i "%archive-choice%"=="%%a" (echo:Using Ext:%archive-choice%&set /a extensionset=1&set archive-extension=%%a)
 if not defined archive-choice echo Using default archive:.tar&set archive-choice=.tar
 if %extensionset%==0 set archive-extension=.tar
@@ -33,7 +33,10 @@ if not exist "%tempname%" echo:File not exist & call :seterror 9009 & goto :eof
 set /a file=1
 if exist "%~1\*" set /a file=0
 if %file%==0 (echo argument is a directory&set /a isdir=0) else (echo argument is a file&set /a isdir=1)
-if exist "%tempname%" echo "%tempname%" exists.
+if exist "%tempname%" echo "%tempname%" exists.&goto fileexistfinish
+goto :eof
+:fileexistfinish
+call :seterror 0
 set /a asterisk=0
 set asterisk_arg=
 set /a start=1
@@ -160,7 +163,7 @@ exit /b %1
 :printhelp
 if "%~1"=="/?" echo WinTarrer v1.4  [by Puneet Bapna]
 echo:
-echo:                     (environment variables)
+echo:                     (environment variables) Wildcards=* Not supported=?
 echo:--^>set archive-choice=[{default=}.tar^|.tar.gz^|.tar.bz2^|.tar.xz^|.tar.lzma]
 echo:--^>set format-choice=[{default=}ustar^|pax^|cpio^|shar]
 echo:
@@ -170,6 +173,8 @@ echo:
 
 echo archive name is auto-generated. does not add to existing archive.
 echo:
+call :seterror 0
 goto :eof
 :printversion
+call :seterror 0
 certutil -hashfile "%~fp0" md5
