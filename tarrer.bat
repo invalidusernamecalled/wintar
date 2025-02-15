@@ -91,6 +91,7 @@ if %isroot%==1 echo:FULL TARGET NAME:%inpt_dir%
 set "current_dir=%cd%"
 set probcur=0
 set /a timetochuck=0
+if /i "%format-choice%"=="shar" set archive-extension=.shar
 :regen
 set /a timetochuck+=1
 set /a RAND=%RANDOM%*9999/32767
