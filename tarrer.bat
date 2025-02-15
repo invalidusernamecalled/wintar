@@ -139,7 +139,8 @@ set /a program_error_level=%errorlevel%
 if %program_error_level%==0 (if exist "%fl_nm_only%%RAND%%archive-extension%" (echo:&echo Output File: "%fl_nm_only%%RAND%%archive-extension%"&move "%fl_nm_only%%RAND%%archive-extension%" "%current_dir%"&call :seterror 0&cd /d "%current_dir%") else (call :seterror 1))
 if %program_error_level% NEQ 0  if exist "%fl_nm_only%%RAND%%archive-extension%" echo:Output File: "%fl_nm_only%%RAND%%archive-extension%"&call :seterror 0&cd /d "%current_dir%"
 echo:tar[%program_error_level%]*******"%~nx0"[%errorlevel%]   ^(Error codes:1=Fail^)
-if %program_error_level% NEQ 0  if exist "%fl_nm_only%%RAND%%archive-extension%" for /f "delims=" %%I in ('tar -t -f "%fl_nm_only%%RAND%%archive-extension%" ^| find /c /v ""') do echo:tar returned some errors. & if %%I==0 echo FATAL FLAW:file may be corrupt.&call :seterror 2
+if %program_error_level%==0  if exist "%fl_nm_only%%RAND%%archive-extension%" for /f "delims=" %%I in ('tar -t -f "%fl_nm_only%%RAND%%archive-extension%" ^| find /c /v ""') do echo:tar did not return errors. & if %%I==0 echo FATAL FLAW: still file may be corrupt.&call :seterror 2
+if %program_error_level% NEQ 0  if exist "%fl_nm_only%%RAND%%archive-extension%" for /f "delims=" %%I in ('tar -t -f "%fl_nm_only%%RAND%%archive-extension%" ^| find /c /v ""') do echo:tar returned some errors. & if %%I==0 echo FATAL FLAW: file may be corrupt.&call :seterror 2
 
 goto :eof
 :manage
