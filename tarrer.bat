@@ -28,7 +28,14 @@ if "%archive-extension%"==".tar.lzma" set createparam=-c --lzma
 if defined format-choice for %%a in (ustar pax cpio shar) do if /i "%format-choice%"=="%%a" echo:--format %format-choice%
 if not defined format-choice set format-choice=ustar
 set exclude_pattern=
-if "%~2" NEQ "" set "exclude_pattern=--exclude %~2"
+if "%~2" NEQ "" set exclude_pattern=--exclude "%~2"
+if "%~3" NEQ "" set exclude_pattern=%exclude_pattern% --exclude "%~3"
+if "%~4" NEQ "" set exclude_pattern=%exclude_pattern% --exclude "%~4"
+if "%~5" NEQ "" set exclude_pattern=%exclude_pattern% --exclude "%~5"
+if "%~6" NEQ "" set exclude_pattern=%exclude_pattern% --exclude "%~6"
+if "%~7" NEQ "" set exclude_pattern=%exclude_pattern% --exclude "%~7"
+if "%~8" NEQ "" set exclude_pattern=%exclude_pattern% --exclude "%~8"
+if "%~9" NEQ "" set exclude_pattern=%exclude_pattern% --exclude "%~9"
 if not exist "%tempname%" echo:File not exist & call :seterror 9009 & goto :eof
 set /a file=1
 if exist "%~1\*" set /a file=0
