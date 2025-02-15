@@ -1,10 +1,10 @@
-###### md5 hash 70cf4a28b918ef0d7ad3723bc0f5df4f<br>
+###### md5 hash c7ffda5401546e0d67dd3ad4520f5e85<br>
 <img src="wintar.png" width=100><p>
 - `set archive-choice=`(default=)`.tar|.tar.gz`|`.tar.bz2`|`.tar.xz`|`.tar.lzma`<br>
 - `set format-choice=`(default=)`ustar`|`pax`|`cpio`|`shar`
 
 #### Syntax:-
-+ <b>`tarrer.bat`</b> "[Directory or FILENAME or *pattern* to include]" `[Optional=*exclude_pattern*]`<br>
++ <b>`tarrer.bat`</b> "[Directory or FILENAME or *pattern* to include]" `[exclude_pattern1/optional] .. [exclude_pattern8/optional]`<br>
 + <b>`addtotar.bat`</b> "Existing (Uncompressed) tar archive" `"[file or folder toADD]"`<br>
 + <b>`xtar.bat`</b> "ARCHIVEtoExtract"
 + <b>`tarlist.bat`</b> "Archive name or Pattern to list"
