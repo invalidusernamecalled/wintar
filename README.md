@@ -12,6 +12,9 @@
 #### Salient features:-
 1. Archive created is automatically assigned a name.
 2. Archive extracted is automatically assigned a folder.
+3. Outputs tar error code in output
+4. Verbose output
+5. returns `2` error level for possibly corrupt archives
 
 ###### Supported Wildcards (for Patterns):
 1. `*`
