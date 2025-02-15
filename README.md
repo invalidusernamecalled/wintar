@@ -1,4 +1,4 @@
-###### md5 hash e69de5fc88850bb11b059fbc33574ad3<br>
+###### md5 hash b857cecdabfff5bcd3b044e39f50e1d0<br>
 <img src="wintar.png" width=100><p>
 - `set archive-choice=`(default=)`.tar|.tar.gz`|`.tar.bz2`|`.tar.xz`|`.tar.lzma`<br>
 - `set format-choice=`(default=)`ustar`|`pax`|`cpio`|`shar`
