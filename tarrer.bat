@@ -177,7 +177,7 @@ echo:--^>set archive-choice=[{default=}.tar^|.tar.gz^|.tar.bz2^|.tar.xz^|.tar.lz
 echo:--^>set format-choice=[{default=}ustar^|pax^|cpio^|shar]
 echo:
 echo Syntax:-
-echo "%~nx0" "Directory/File To Add to archive" [exclude_pattern/optional]
+echo "%~nx0" "Directory/File To Add to archive" [exclude_pattern1/optional] .. [exclude_pattern8/optional]
 echo:
 
 echo archive name is auto-generated. does not add to existing archive.
