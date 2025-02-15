@@ -3,6 +3,9 @@
 <img src="wintar.png" width=100><p>
 - `set archive-choice=`(default=)`.tar|.tar.gz`|`.tar.bz2`|`.tar.xz`|`.tar.lzma`<br>
 - `set format-choice=`(default=)`ustar`|`pax`|`cpio`|`shar`
+- `set enable_logging=1`|`0`
+- `set logfile=Example_Name`    Log is stored as `Example_Name_vhZZPuG.txt`<br>
+   &nbsp; <b>If it does not Exist Already.</b>
 
 #### Syntax:-
 + <b>`tarrer.bat`</b> "[Directory or FILENAME or *pattern* to include]" `[exclude_pattern1/optional] .. [exclude_pattern8/optional]`<br>
