@@ -8,7 +8,7 @@
    &nbsp; <b>If it does not Exist Already.</b>
 
 #### Syntax:-
-+ <b>`tarrer.bat`</b> "[FILE/FOLDER]" [EXCLUDE 1/optional] .. [EXCLUDE 8/optional]<br>
++ <b>`tarrer.bat`</b> "[FILE/FOLDER]" [{optional}EXCLUDE 1] .. [EXCLUDE 8]<br>
 + <b>ADD&nbsp; &nbsp;  --\>`addtotar.bat`</b> "ARCHIVE" "FILE/FOLDER"<br>
 + <b>extract--\>`xtar.bat`</b> "ARCHIVE"
 + <b>list&nbsp; &nbsp; &nbsp; --\>`tarlist.bat`</b> "ARCHIVE/PATTERN"
