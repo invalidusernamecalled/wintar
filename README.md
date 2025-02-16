@@ -1,5 +1,5 @@
 <B>Project is Now Closed</b>
-###### md5 hash 9e5f67007078977ba65b6476f93c27cf<br>
+###### md5 hash b02f448f0982cb37970c231bb35ea155<br>
 <img src="wintar.png" width=100><p>
 - `set archive-choice=`(default=)`.tar|.tar.gz`|`.tar.bz2`|`.tar.xz`|`.tar.lzma`<br>
 - `set format-choice=`(default=)`ustar`|`pax`|`cpio`|`shar`
