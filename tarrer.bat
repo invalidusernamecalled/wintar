@@ -4,8 +4,9 @@ set inpt_fle=
 set inpt_dir=
 set extensionset=0
 set OpenTuna=
+if not defined enable_logging set /a enable_logging=0
 set /a enable_logging=%enable_logging%
-if defined enable_logging if %enable_logging%==1 if not exist %logfile%_vhZZPuG.txt set OpenTuna=^>%logfile%_vhZZPuG.txt 2^>^&1
+if %enable_logging%==1 if not exist %logfile%_vhZZPuG.txt set OpenTuna=^>%logfile%_vhZZPuG.txt 2^>^&1
 call :seterror 1
 if "%~2"=="/f" (cd /d "%~3" >NUL&echo "%~fp1"&goto :eof)
 if "%~2"=="/n" (cd /d "%~3" >NUL&echo "%~nx1"&goto :eof)
