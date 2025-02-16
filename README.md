@@ -8,10 +8,10 @@
    &nbsp; <b>If it does not Exist Already.</b>
 
 #### Syntax:-
-+ <b>`tarrer.bat`</b> "[Directory or FILENAME or *pattern* to include]" `[exclude_pattern1/optional] .. [exclude_pattern8/optional]`<br>
-+ <b>`addtotar.bat`</b> "Existing (Uncompressed) tar archive" `"[file or folder toADD]"`<br>
-+ <b>`xtar.bat`</b> "ARCHIVEtoExtract"
-+ <b>`tarlist.bat`</b> "Archive name or Pattern to list"
++ <b>`tarrer.bat`</b> "[FILE/FOLDER]" [EXCLUDE 1/optional] .. [EXCLUDE 8/optional]<br>
++ <b>ADD&nbsp; &nbsp;  --\>`addtotar.bat`</b> "ARCHIVE" "FILE/FOLDER"<br>
++ <b>extract--\>`xtar.bat`</b> "ARCHIVE"
++ <b>list&nbsp; &nbsp; &nbsp; --\>`tarlist.bat`</b> "ARCHIVE/PATTERN"
 
 #### Salient features:-
 1. Archive name is created automatically
