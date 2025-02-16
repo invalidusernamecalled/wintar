@@ -7,7 +7,7 @@
 #### Syntax:-
 + <b>`tarrer.bat`</b> "[FILE/FOLDER]" [{optional}EXCLUDE-1] .. [EXCLUDE-8]<br>
 + <b>add&nbsp; &nbsp;  --\>`addtotar.bat`</b> "ARCHIVE" "FILE/FOLDER"<br>
-+ <b>extract--\>`xtar.bat`</b>&nbsp; &nbsp; &nbsp; &nbsp; "ARCHIVE"
++ <b>extract--\>`xtar.bat`</b>&nbsp; &nbsp; &nbsp; &nbsp; "ARCHIVE" /s  {/s=optional=strip directory}
 + <b>list&nbsp; &nbsp; &nbsp; --\>`tarlist.bat`</b>&nbsp; &nbsp; "ARCHIVE/PATTERN"
 
 #### Salient features:-
