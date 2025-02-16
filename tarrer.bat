@@ -3,10 +3,10 @@ set "wrkdir=%cd%"
 set inpt_fle=
 set inpt_dir=
 set extensionset=0
-set OpenTuna=
-if not defined enable_logging set /a enable_logging=0
-set /a enable_logging=%enable_logging%
-if %enable_logging%==1 if not exist %logfile%_vhZZPuG.txt set OpenTuna=^>%logfile%_vhZZPuG.txt 2^>^&1
+REM if not defined enable_logging set /a enable_logging=0
+REM set /a enable_logging=%enable_logging%
+REM set Opentuna=NUL
+REM if %enable_logging%==1 if not exist %logfile%_vhZZPuG.txt set OpenTuna=%logfile%_vhZZPuG.txt
 call :seterror 1
 if "%~2"=="/f" (cd /d "%~3" >NUL&echo "%~fp1"&goto :eof)
 if "%~2"=="/n" (cd /d "%~3" >NUL&echo "%~nx1"&goto :eof)
@@ -127,15 +127,15 @@ pushd "%inpt_dir%"&goto :checkdirclown
 if %isdir%==1 if %targetyes% neq 1 popd
 if %isdir%==1 if %probcur% neq 0  popd
 :All_is_Well
-if %isdir%==1 if %asterisk%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%asterisk_arg%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%asterisk_arg%" %OpenTuna% &goto :checkoutput 
+if %isdir%==1 if %asterisk%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%asterisk_arg%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%asterisk_arg%"  &goto :checkoutput 
 
-if %isdir%==1 if %targetyes%==1 if %probcur%==0 pushd "%inpt_dir%"&echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%" %OpenTuna%&goto :checkoutput
+if %isdir%==1 if %targetyes%==1 if %probcur%==0 pushd "%inpt_dir%"&echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%" &goto :checkoutput
 
-if %isdir%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%fl_nm_only%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%fl_nm_only%" %OpenTuna%  
+if %isdir%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%fl_nm_only%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%fl_nm_only%"   
 
-if %isdir%==0 if %probcur%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%%fl_nm_only_args%" %OpenTuna%&goto checkoutput 
+if %isdir%==0 if %probcur%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%%fl_nm_only_args%" &goto checkoutput 
 
-if %isdir%==0 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%"  %OpenTuna%
+if %isdir%==0 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%fl_nm_only%"  
 
   
 :checkoutput
@@ -149,14 +149,14 @@ if %program_error_level% NEQ 0  if exist "%fl_nm_only%%RAND%%archive-extension%"
 echo:tar[%program_error_level%]:"%~nx0"[%errorlevel%]   ^(Error codes:0=success^)
 goto :eof
 :manage
-if %probcur%==0 if "%cd%"=="%inpt_dir%" echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%asterisk_arg%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%asterisk_arg%" %OpenTuna%&goto :checkoutput
+if %probcur%==0 if "%cd%"=="%inpt_dir%" echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%asterisk_arg%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%asterisk_arg%" &goto :checkoutput
 
-if %isdir%==1 if %asterisk%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%asterisk_arg%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%asterisk_arg%" %OpenTuna% &goto :checkoutput 
+if %isdir%==1 if %asterisk%==1 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%asterisk_arg%" &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%\%asterisk_arg%"  &goto :checkoutput 
 goto :eof
 :istoor
 set drive_letter=%fl_nm:~0,1%
 echo It is %drive_letter%:
-echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%drive_letter%:\*"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%drive_letter%:\*" %OpenTuna%
+echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%drive_letter%:\*"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%drive_letter%:\*" 
 goto checkoutput
 goto :eof
 :checkdirclown
@@ -171,7 +171,7 @@ if %errorlevel% NEQ 0 echo Problem: write file in target's directory.
 del "%fl_nm_only%%RAND%%archive-extension%"
 popd
 
-if %isdir% == 0 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%%fl_nm_only_args%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%%fl_nm_only_args%"  %OpenTuna%
+if %isdir% == 0 echo:tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%%fl_nm_only_args%"  &tar %createparam% -f "%fl_nm_only%%RAND%%archive-extension%" --format %format-choice% %exclude_pattern% "%inpt_dir%%fl_nm_only_args%"  
 
 goto checkoutput
 :seterror
