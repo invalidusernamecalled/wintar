@@ -182,9 +182,7 @@ echo:
 echo:                     (environment variables) Wildcards=* Not supported=?
 echo:--^>set archive-choice={default=}.tar^|.tar.gz^|.tar.bz2^|.tar.xz^|.tar.lzma
 echo:--^>set format-choice={default=}ustar^|pax^|cpio^|shar
-echo:--^>set enable_logging=1^|0
-echo:--^>set logfile=Example_Name    Log is stored as Example_Name_vhZZPuG.txt
-echo:                                    if it does not Exist Already.
+echo:
 echo Syntax:-
 echo "%~nx0" "Directory/File To Add to archive" [exclude_pattern1/optional] .. [exclude_pattern8/optional]
 echo:
