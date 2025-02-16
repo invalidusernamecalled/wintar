@@ -28,7 +28,7 @@
 >1. do not use Drag 'n' Drop<br>
 >2. do not Drag 'n' Drop multiple items<br>
 >3. multiple items are not processed.<br>
->+ Windows does not pass arguments to the script in proper or predictable format.
+>4. Windows does not pass arguments to the script in proper or predictable format.
 
 #### Edge case:-
 1. Do not pass file/folder names or arguments containing ampersand `%` especially some letter or word enclosed in ampersands like `some %file%.txt` as it is subject to mis interpretation by the shell.
