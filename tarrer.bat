@@ -60,6 +60,7 @@ echo:searching for *
 for /f "tokens=%start% delims=\" %%i in ("%~1") do echo searching:"%%i"&echo "%%i"|findstr /r "[*]"&&set "asterisk_arg=%%i"
 if %start% GTR 254 goto secondtry
 if "%asterisk_arg%" == "" goto asterisk
+goto process
 :secondtry
 echo "%~1"|findstr /r "[*]"&&set "asterisk_arg=%~1"
 :process
