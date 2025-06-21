@@ -28,6 +28,9 @@ returns `2` error level for possibly corrupt archives
 - `set archive-choice=`(default=)`.tar|.tar.gz`|`.tar.bz2`|`.tar.xz`|`.tar.lzma`<br>
 - `set format-choice=`(default=)`ustar`|`pax`|`cpio`|`shar`
 
+#### Disclaimer:
+NO WARRANTY. PLEASE READ LICENSE
+
 >[!WARNING]
 > <b>Not for GUI use!</b>
 >1. do not use Drag 'n' Drop<br>
