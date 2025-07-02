@@ -13,6 +13,12 @@
 + <b>extract--\>`xtar.bat`</b>&nbsp; &nbsp; &nbsp; &nbsp; "ARCHIVE" /s  {/s=optional=strip directory}
 + <b>list&nbsp; &nbsp; &nbsp; --\>`tarlist.bat`</b>&nbsp; &nbsp; "ARCHIVE/PATTERN"
 
+suggested usage:
++ use `tarrer.bat` with initial file pattern/folder name
++ use `addtotar.bat` to add subsequent files to already created archive
++ use `tarlist.bat` to list archive contents
++ use `xtar.bat` to extract archive
+
 #### Salient features:-
 1. <i>Unique Archive name is generated</i> automatically
 2. <i>Extracted archive creates a folder</i> automatically
