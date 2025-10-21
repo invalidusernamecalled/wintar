@@ -112,7 +112,8 @@ set /a timetochuck=0
 set /a timetochuck+=1
 if %timetochuck% GTR 100 goto ZZig
 for /f "delims=" %%i in ('where cmd') do set "bakra=%%i"
-copy "%bakra%" "%fl_nm_only%%RAND%%archive-extension%" 2>NUL 1>NUL
+if exist "%fl_nm_only%%RAND%%archive-extension%" echo:RARE EXCEPTION: Cannot perform write test. File already exists. &echo:Try again.&call :seterror 1
+if not exist "%fl_nm_only%%RAND%%archive-extension%" copy "%bakra%" "%fl_nm_only%%RAND%%archive-extension%" 2>NUL 1>NUL
 if %errorlevel%==0 del "%fl_nm_only%%RAND%%archive-extension%" 2>NUL&echo:Can: write to current directory&goto ZZig
 if %errorlevel% NEQ 0 echo Problem: write file in current directory.&set /a probcur=1
 echo:will save to desktop
@@ -166,7 +167,8 @@ set /a targetyes=0
 set /a timetochuck+=1
 if %timetochuck% GTR 100 goto All_is_Well
 for /f "delims=" %%i in ('where cmd') do set "bakra=%%i"
-copy "%bakra%" "%fl_nm_only%%RAND%%archive-extension%" 2>NUL 1>NUL
+if exist "%fl_nm_only%%RAND%%archive-extension%" echo:RARE EXCEPTION: Cannot perform write test. File already exists. &echo:Try again.&call :seterror 1
+if not exist "%fl_nm_only%%RAND%%archive-extension%" copy "%bakra%" "%fl_nm_only%%RAND%%archive-extension%" 2>NUL 1>NUL
 if %errorlevel%==0 set /a targetyes=1&goto All_is_Well
 if %errorlevel% NEQ 0 echo Problem: write file in target's directory.
 del "%fl_nm_only%%RAND%%archive-extension%"
@@ -178,20 +180,22 @@ goto checkoutput
 :seterror
 exit /b %1
 :printhelp
-if "%~1"=="/?" echo WinTarrer v1.4  [by Puneet Bapna]
+if "%~1"=="/?" echo  WinTarrer v1.4            [by Puneet Bapna]
+echo|set/p=MD5 checksum:&call :printversion
 echo:
-echo:                     (environment variables) Wildcards=* Not supported=?
-echo:--^>set archive-choice={default=}.tar^|.tar.gz^|.tar.bz2^|.tar.xz^|.tar.lzma
-echo:--^>set format-choice={default=}ustar^|pax^|cpio^|shar
+echo:                     (environment variables)                            
+echo:set ARCHIVE-CHOICE={default=.tar}^|.tar.gz^|.tar.bz2^|.tar.xz^|.tar.lzma
+echo:set FORMAT-CHOICE={default=ustar}^|pax^|cpio^|shar
 echo:
 echo Syntax:-
 echo "%~nx0" "Directory/File To Add to archive" [exclude_pattern1/optional] .. [exclude_pattern8/optional]
 echo:
+echo:Supported Wildcard *     not supported ?
+
 
 echo archive name is auto-generated. does not add to existing archive.
 echo:
 call :seterror 0
 goto :eof
 :printversion
-call :seterror 0
-certutil -hashfile "%~fp0" md5
+certutil -hashfile "%~fp0" md5 | find /v ":"
