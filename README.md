@@ -46,4 +46,5 @@ NO WARRANTY IS HERE BY OFFERED BY THE AUTHOR. PLEASE DO NOT BLAME ME FOR LOSS OF
 
 #### Edge case:-
 1. Do not pass file/folder names or arguments containing ampersand `%` especially some letter or word enclosed in ampersands like `some %file%.txt` as it is subject to mis interpretation by the shell.
-2.  File/Folder names containing special variable names (enclosed in `%` like `%specialname%` *may* be misinterpreted (untested) but *will usually* return a file not found error. (`9009`)
+2.  File/Folder names containing `%` like `%specialname%` is subject to being misinterpreted if a variable by that name exists (usual shell behaviour) but *will usually* return a file not found error (and not result in adverse operation) (`9009`)
+3.  As such these cases and any adverse operation cannot be pre judged by me.
